@@ -1,0 +1,5 @@
+<dict>
+	<string name="name">Cf's Better Bleeding - Reworked</string>
+	<string name="author">Casualfield - Updated: Xinterp</string>
+	<string name="description">Stacks to 30 instead of 10, on Bosses this ramps to 90 max stacks. Only one stack is lost every 5 seconds instead of all stacks every 3 seconds. Does 8 base damage instead of 10. Ticks twice as fast. Makes bleed builds great again without completely destroying the balance. Overwrites stacks_actors.sval</string>
+</dict>

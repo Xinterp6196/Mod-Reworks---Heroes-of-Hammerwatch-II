@@ -1,0 +1,124 @@
+<loader>ActorBuffStackDef::LoadMultiple</loader>
+<array>
+	<dict>
+		<string name="id">bleeding</string>
+		<int name="max">30</int>
+		<bool name="extrapolate-intensity">true</bool>
+		<bool name="refresh-on-max">true</bool>
+		<!-- <bool name="display-timer-radius">true</bool> -->
+		<!-- <bool name="fx-player-facing">true</bool> -->
+		
+		<dict name="timer">
+			<int name="time">5000</int>
+			<int name="add-stack">-1</int>
+			
+			<bool name="gain-set">true</bool>
+			<!-- <bool name="lose-set">true</bool> -->
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+
+			<bool name="gain-reset">true</bool>
+			<!-- <bool name="lose-reset">true</bool> -->
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">false</bool>
+		</dict>
+
+		<dict name="buff">
+			<bool name="debuff">true</bool>
+
+			<array name="tags">
+				<string>debuff</string>
+				<string>bleeding</string>
+			</array>
+
+			<string name="icon">special/icons/bleeding.unit</string>
+			
+			<dict name="tick">
+				<int name="freq">500</int>
+
+				<array name="effects">
+					<dict>
+						<string name="class">Damage</string>
+						<int name="physical">8</int>
+						<bool name="true-strike">true</bool>
+						<bool name="dot">true</bool>
+					</dict>
+					<dict>
+						<string name="class">SpawnEffect</string>
+						<string name="effect">effects/generic/actor/actor_blood_loss.effect</string>
+					</dict>
+				</array>
+			</dict>
+
+			<dict name="move">
+				<int name="freq">16</int>
+				<array name="effects">
+					<dict>
+						<string name="class">Damage</string>
+						<int name="physical">8</int>
+						<bool name="true-strike">true</bool>
+						<bool name="dot">true</bool>
+					</dict>
+					<dict>
+						<string name="class">SpawnEffect</string>
+						<string name="effect">effects/generic/actor/actor_blood_loss.effect</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</dict>
+	
+
+	<dict>
+		<string name="id">boss_face_nodes</string>
+		<int name="max">90</int>
+
+		<array name="add-effects">
+			<dict>
+				<string name="class">DebugLog</string>
+				<string name="text">test_add</string>
+			</dict>
+		</array>
+
+		<array name="gain-effects">
+			<dict>
+				<string name="class">DebugLog</string>
+				<string name="text">test_gain</string>
+			</dict>
+		</array>
+
+		<array name="sub-effects">
+			<dict>
+				<string name="class">DebugLog</string>
+				<string name="text">test_sub</string>
+			</dict>
+		</array>
+
+		<array name="lose-effects">
+			<dict>
+				<string name="class">DebugLog</string>
+				<string name="text">test_lose</string>
+			</dict>
+		</array>
+
+
+<!-- 		<dict name="buff">
+			<bool name="debuff">false</bool>
+
+			<string name="icon">special/icons/bleeding.unit</string>
+
+			<dict name="tick">
+				<int name="freq">500</int>
+
+				<array name="effects">
+					<dict>
+						<string name="class">Damage</string>
+						<int name="physical">8</int>
+						<bool name="true-strike">true</bool>
+						<bool name="dot">true</bool>
+					</dict>
+				</array>
+			</dict>
+		</dict> -->
+	</dict>
+</array>
