@@ -1,8 +1,0 @@
-<dict>
-	<string name="name">leave_your_slow_friends_behind</string>
-	<string name="author">Xinterp</string>
-	<string name="description">Rework of Casulfields no waiting for everyone mod.
-Removes the checks for all alive players having to be at the exit to continue to the next level.
-Overwrites worldscript\triggers\AllPlayersAreaTrigger.as &amp; worldscript\player\AllPlayersLevelExit.as
-</string>
-</dict>
