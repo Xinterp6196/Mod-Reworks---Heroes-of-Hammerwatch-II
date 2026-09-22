@@ -1,0 +1,8 @@
+<dict>
+	<string name="name">cf_no_waiting_for_everyone_reworked</string>
+	<string name="author">Casualfield</string>
+	<string name="description">Removes the checks for all alive players having to be at the exit to continue to the next level.
+Overwrites worldscript\triggers\AllPlayersAreaTrigger.as &amp; worldscript\player\AllPlayersLevelExit.as
+Reworked by Xinterp
+</string>
+</dict>
