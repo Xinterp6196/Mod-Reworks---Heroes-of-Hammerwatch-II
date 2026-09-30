@@ -1,0 +1,6 @@
+<dict>
+	<string name="name">Xin's Profile Wide Boons</string>
+	<string name="author">Xinterp</string>
+	<string name="description">Makes boons apply across your current modded profile, rather than just the current character. - Replaces: \\scripts\Town\TownRecord.as and \\scripts\Missions\MissionBoon.as
+</string>
+</dict>

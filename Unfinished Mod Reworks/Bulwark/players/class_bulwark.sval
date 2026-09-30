@@ -1,0 +1,77 @@
+<loader order="1">PlayerClass::LoadMultiple</loader>
+
+%defblock BulwarkStats
+	<int name="base-str">10</int>
+	<int name="base-dex">8</int>
+	<int name="base-int">6</int>
+	<int name="base-foc">6</int>
+	<int name="base-vit">10</int>
+	<int name="level-str">0</int>
+	<int name="level-dex">0</int>
+	<int name="level-int">0</int>
+	<int name="level-foc">0</int>
+	<int name="level-vit">0</int>
+	<int name="str-spellpwr">1</int>
+	
+	<int name="base-health">120</int>
+	<int name="base-mana">80</int>
+	<int name="level-health">5</int>
+	<int name="level-mana">4</int>
+	
+	<float name="base-health-regen">1</float>
+	<float name="base-mana-regen">1</float>
+	<float name="level-health-regen">0</float>
+	<float name="level-mana-regen">0</float>
+	
+	<int name="base-armor">5</int>
+	<int name="base-fire-res">0</int>
+	<int name="base-ice-res">0</int>
+	<int name="base-lightning-res">0</int>
+	<int name="base-poison-res">5</int>
+	
+	<float name="level-armor">0.3</float>
+	<float name="level-fire-res">0.2</float>
+	<float name="level-ice-res">0.2</float>
+	<float name="level-lightning-res">1.0</float>
+	<float name="level-poison-res">0.3</float>
+	
+	<string name="panel-style">paladin</string>
+	<string name="panel-color-tint">#e0e0e0ff</string>
+	<string name="portrait-class">paladin</string>
+	<string name="title">title_bulwark</string>
+
+	<array name="waypoint">
+		<string>gui/icons.png</string>
+		<int>100</int><vec4>167 242 14 14</vec4>
+	</array>
+
+	<array name="starting-equipment">
+		<string>chest_str_t1a</string>
+		<string>feet_str_t1a</string>
+		<string>mainhand_mace_01</string>
+		<string>offhand_shield_01</string>
+	</array>
+%endblock
+
+<array>
+	<dict>
+		<string name="id">bulwark</string>
+		<string name="name">Bulwark</string>
+		<string name="description">A defensive fighter who turns thorns into force, protects allies, and punishes attackers.</string>
+
+		<array name="icon">
+			<string>players/class_showcase.png</string>
+			<int>100</int><vec4>96 0 32 32</vec4>
+		</array>
+
+		<array name="skills">
+			<string>players/attacks/dash.sval</string>
+			<string>players/bulwark/skills/thorn_burst.sval</string>
+			<string>players/bulwark/skills/guardian_pulse.sval</string>
+			<string>players/bulwark/skills/barbed_carapace.sval</string>
+			<string>players/bulwark/skills/echoing_assault.sval</string>
+		</array>
+
+		%block BulwarkStats
+	</dict>
+</array>

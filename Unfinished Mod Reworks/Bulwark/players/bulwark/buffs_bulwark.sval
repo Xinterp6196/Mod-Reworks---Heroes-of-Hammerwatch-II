@@ -1,0 +1,69 @@
+<svals>
+%defblock Guard LEVEL REDUCTION
+	<dict name="guard_%%LEVEL%%">
+		<int name="duration">8000</int>
+		<bool name="debuff">false</bool>
+		<string name="fx">effects/generic/actor/actor_drum_buff.effect</string>
+		<array name="modifiers">
+			<dict>
+				<string name="class">Modifiers::Armor</string>
+				<float name="dmg-taken-mul">%%REDUCTION%%</float>
+			</dict>
+		</array>
+	</dict>
+%endblock
+
+%block Guard 1 0.98
+%block Guard 2 0.96
+%block Guard 3 0.94
+%block Guard 4 0.92
+%block Guard 5 0.90
+
+%defblock Regen LEVEL AMOUNT
+	<dict name="regen_%%LEVEL%%">
+		<int name="duration">8000</int>
+		<bool name="debuff">false</bool>
+		<string name="fx">effects/generic/actor/actor_drum_buff.effect</string>
+		<array name="modifiers">
+			<dict>
+				<string name="class">Modifiers::AttribAdd</string>
+				<float name="health-regen">%%AMOUNT%%</float>
+			</dict>
+		</array>
+	</dict>
+%endblock
+
+%block Regen 4 4
+%block Regen 8 8
+%block Regen 12 12
+
+%defblock Haste LEVEL AMOUNT
+	<dict name="haste_%%LEVEL%%">
+		<int name="duration">8000</int>
+		<bool name="debuff">false</bool>
+		<string name="fx">effects/generic/actor/actor_drum_buff.effect</string>
+		<array name="modifiers">
+			<dict>
+				<string name="class">Modifiers::SpeedAdd</string>
+				<float name="attack-speed">%%AMOUNT%%</float>
+			</dict>
+		</array>
+	</dict>
+%endblock
+
+%block Haste 10 0.10
+%block Haste 20 0.20
+%block Haste 30 0.30
+
+<dict name="noop">
+	<int name="duration">8000</int>
+	<bool name="debuff">false</bool>
+	<array name="modifiers"></array>
+</dict>
+
+<dict name="noop_debuff">
+	<int name="duration">3000</int>
+	<bool name="debuff">true</bool>
+	<array name="modifiers"></array>
+</dict>
+</svals>

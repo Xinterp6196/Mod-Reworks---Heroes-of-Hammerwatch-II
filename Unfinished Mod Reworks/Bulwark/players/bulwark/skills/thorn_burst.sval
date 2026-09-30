@@ -1,0 +1,146 @@
+﻿%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Thorn Burst</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">Release a physical shockwave around you, dealing damage based on your current thorns.</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>damage</s><s>10%</s><s>20%</s><s>30%</s><s>40%</s><s>50%</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>14</s><s>14</s><s>14</s><s>14</s><s>14</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>3s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/bulwark/icons_skills.png</string>
+		<int>100</int><vec4>48 0 24 24</vec4>
+	</array>
+
+	<string name="id">bulwark_thorn_burst</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">cast</string>
+		<int name="anim-length">600</int>
+		<int name="cooldown">3000</int>
+		<int name="castpoint">150</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0.7</float>
+		<ivec2 name="move-speed">0 250</ivec2>
+		<ivec2 name="blocking">0 250</ivec2>
+		<bool name="repeating">false</bool>
+		<int name="mana-cost">14</int>
+
+		<dict name="binds">
+			<float name="thorns-percent">0.1</float>
+			<int name="bleed-stacks">0</int>
+			<string name="vulnerability-buff">players/bulwark/buffs_bulwark.sval:noop_debuff</string>
+			<string name="weakness-buff">players/bulwark/buffs_bulwark.sval:noop_debuff</string>
+		</dict>
+
+		<dict name="actions">
+			<array name="pre">
+				<dict>
+					<string name="class">SpawnEffect</string>
+					<string name="effect">players/warrior/effects/warcry.effect</string>
+					<bool name="attach-to-owner">true</bool>
+				</dict>
+			</array>
+			<array name="cast">
+				<dict>
+					<string name="class">Explode</string>
+					<string name="fx">players/warrior/effects/warcry_area.effect</string>
+					<int name="radius">120</int>
+					<int name="min-radius">100</int>
+					<float name="dist-scaling">1000</float>
+					<bool name="hit-self">false</bool>
+					<bool name="hit-same-team">false</bool>
+					<bool name="hit-different-team">true</bool>
+					<array name="effects">
+						<dict>
+							<float name="self-dmg">0</float>
+							<float name="team-dmg">0</float>
+							<float name="enemy-dmg">1</float>
+							<bool name="only-actors">true</bool>
+						</dict>
+						<dict>
+							<string name="class">StatBasedDamage</string>
+							<string name="type">physical</string>
+							<string name="stat">thorns</string>
+							<string name="amount-bind">thorns-percent</string>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<string name="buff">tweak/buffs/stacks_actors.sval:bleeding</string>
+							<string name="stacks-bind">bleed-stacks</string>
+							<float name="chance">1</float>
+							<bool name="target-self">false</bool>
+						</dict>
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff-bind">vulnerability-buff</string>
+						</dict>
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff-bind">weakness-buff</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+
+		<array name="timeline">
+			<i>0</i><s>pre</s>
+			<i>150</i><s>cast</s>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><int name="mana-cost">14</int><dict name="binds"><float name="thorns-percent">0.2</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><int name="mana-cost">14</int><dict name="binds"><float name="thorns-percent">0.3</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_4</int><int name="mana-cost">14</int><dict name="binds"><float name="thorns-percent">0.4</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><int name="mana-cost">14</int><dict name="binds"><float name="thorns-percent">0.5</float></dict></dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Serrated Shockwave</string>
+			<string name="description">Thorn Burst applies bleeding.</string>
+			<array name="description-params"><array><s>stacks</s><s>stacks</s><s>1</s><s>2</s><s>3</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>48 0 24 24</vec4></array>
+			<string name="id">bulwark_thorn_burst_bleed</string>
+			<dict name="skill"><dict name="binds"><int name="bleed-stacks">1</int></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><int name="bleed-stacks">2</int></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><int name="bleed-stacks">3</int></dict></dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Crushing Exposure</string>
+			<string name="description">Thorn Burst applies vulnerability.</string>
+			<array name="description-params"><array><s>debuff</s><s>debuff</s><s>Lesser</s><s>Normal</s><s>Greater</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>48 0 24 24</vec4></array>
+			<string name="id">bulwark_thorn_burst_vulnerability</string>
+			<dict name="skill"><dict name="binds"><string name="vulnerability-buff">tweak/buffs/status_effects.sval:vulnerability_minor</string></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><string name="vulnerability-buff">tweak/buffs/status_effects.sval:vulnerability</string></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><string name="vulnerability-buff">tweak/buffs/status_effects.sval:vulnerability_greater</string></dict></dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Crippling Exposure</string>
+			<string name="description">Thorn Burst applies weakness.</string>
+			<array name="description-params"><array><s>debuff</s><s>debuff</s><s>Lesser</s><s>Normal</s><s>Greater</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>48 0 24 24</vec4></array>
+			<string name="id">bulwark_thorn_burst_weakness</string>
+			<dict name="skill"><dict name="binds"><string name="weakness-buff">tweak/buffs/status_effects.sval:weakness_minor</string></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><string name="weakness-buff">tweak/buffs/status_effects.sval:weakness</string></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><string name="weakness-buff">tweak/buffs/status_effects.sval:weakness_greater</string></dict></dict>
+			</array>
+		</dict>
+	</array>
+</dict>

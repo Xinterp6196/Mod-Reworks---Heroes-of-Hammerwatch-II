@@ -1,0 +1,14 @@
+<loader>HeroTitle::LoadMultiple</loader>
+<array>
+	<dict>
+		<string name="id">title_bulwark</string>
+		<string name="name">Bulwark</string>
+		<string name="description">Gain 3 health per hero level.</string>
+		<float name="desc-per-level">3</float>
+
+		<dict name="modifier">
+			<string name="class">Modifiers::AttribAdd</string>
+			<ivec2 name="health">0 30</ivec2>
+		</dict>
+	</dict>
+</array>
