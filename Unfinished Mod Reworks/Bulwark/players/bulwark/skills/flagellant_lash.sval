@@ -1,0 +1,143 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Barbed Lash</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">Sweep a short arc with a thorned lash, dealing physical damage and building fervor on each hit.</string>
+	<array name="description-params">
+		<array><s>damage</s><s>Damage</s><s>40</s><s>50</s><s>60</s><s>70</s><s>80</s></array>
+		<array><s>thorns-damage</s><s>Thorns damage</s><s>35%</s><s>40%</s><s>45%</s><s>50%</s><s>55%</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>40</s><s>40</s><s>50</s><s>50</s><s>60</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>2.5s</s></array>
+	</array>
+	<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>0 64 24 24</vec4></array>
+	<string name="id">bulwark_barbed_lash</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>melee</s><s>physical</s><s>barbed-lash</s></array>
+	<int name="starting-level">1</int>
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">cast</string>
+		<int name="anim-length">600</int>
+		<int name="cooldown">2500</int>
+		<int name="castpoint">150</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0.5</float>
+		<ivec2 name="move-speed">0 200</ivec2>
+		<ivec2 name="blocking">0 200</ivec2>
+		<bool name="repeating">true</bool>
+		<int name="mana-cost">40</int>
+		<dict name="binds">
+			<int name="lash-damage">40</int>
+			<float name="lash-thorns-mul">0.35</float>
+			<int name="bleed-stacks">0</int>
+			<int name="fervor-stacks">1</int>
+			<vec2 name="fervor-thorns-mul">0 0</vec2>
+		</dict>
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::InjectModifiersIntoStack</string>
+					<string name="buff">players/bulwark/stacks_bulwark.sval:flagellant_fervor</string>
+					<array name="modifiers">
+						<dict>
+							<string name="class">Modifiers::ConvertStat</string>
+							<string name="from">thorns</string>
+							<string name="to">thorns</string>
+							<string name="mul-bind">fervor-thorns-mul</string>
+							<bool name="add">true</bool>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+		<dict name="actions">
+			<array name="swing">
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/priest/flagellate/flagellate_swing</string>
+				</dict>
+				<dict>
+					<string name="class">SpawnEffect</string>
+					<string name="effect">players/priest/effects/priest_flagellate.effect?slash_range=100</string>
+					<bool name="send-angle">true</bool>
+					<bool name="attach-to-owner">true</bool>
+				</dict>
+				<dict>
+					<string name="class">MeleeSwing</string>
+					<int name="dist">90</int>
+					<int name="rays">37</int>
+					<float name="angledelta">5</float>
+					<float name="angleoffset">-90</float>
+					<int name="interval">5</int>
+					<int name="delay">0</int>
+					<array name="effects">
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/priest/flagellate/flagellate_hit</string>
+						</dict>
+						<dict><string name="class">Damage</string><string name="physical-bind">lash-damage</string></dict>
+						<dict><string name="class">StatBasedDamage</string><string name="type">physical</string><string name="stat">thorns</string><string name="amount-bind">lash-thorns-mul</string></dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<string name="buff">tweak/buffs/stacks_bulwark.sval:bulwark_bleeding</string>
+							<string name="stacks-bind">bleed-stacks</string>
+							<float name="chance">1</float>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<string name="buff">players/bulwark/stacks_bulwark.sval:flagellant_fervor</string>
+							<bool name="target-self">true</bool>
+							<string name="stacks-bind">fervor-stacks</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<array name="timeline"><i>150</i><s>swing</s></array>
+	</dict>
+	<array name="upgrades">
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int><int name="mana-cost">40</int><dict name="binds"><int name="lash-damage">50</int><float name="lash-thorns-mul">0.40</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int><int name="mana-cost">50</int><dict name="binds"><int name="lash-damage">60</int><float name="lash-thorns-mul">0.45</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int><int name="mana-cost">50</int><dict name="binds"><int name="lash-damage">70</int><float name="lash-thorns-mul">0.50</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int><int name="mana-cost">60</int><dict name="binds"><int name="lash-damage">80</int><float name="lash-thorns-mul">0.55</float></dict></dict>
+	</array>
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Jagged Lash</string>
+			<string name="description">Barbed Lash applies bleeding.</string>
+			<array name="description-params"><array><s>stacks</s><s>Stacks</s><s>2</s><s>4</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>0 64 24 24</vec4></array>
+			<string name="id">bulwark_barbed_lash_bleed</string>
+			<dict name="skill"><dict name="binds"><int name="bleed-stacks">2</int></dict></dict>
+			<array name="upgrades"><dict><string name="quality">rare</string><dict name="binds"><int name="bleed-stacks">4</int></dict></dict></array>
+		</dict>
+		<dict>
+			<string name="name">Ecstatic Thorns</string>
+			<string name="description">Each Fervor stack increases thorns.</string>
+			<array name="description-params"><array><s>thorns</s><s>Thorns per stack</s><s>2%</s><s>3%</s><s>4%</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>0 64 24 24</vec4></array>
+			<string name="id">bulwark_barbed_lash_ecstasy</string>
+			<dict name="skill"><dict name="binds"><vec2 name="fervor-thorns-mul">0.02 0.10</vec2></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><vec2 name="fervor-thorns-mul">0.03 0.15</vec2></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><vec2 name="fervor-thorns-mul">0.04 0.20</vec2></dict></dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Lash Counterweight</string>
+			<string name="description">Reduce Barbed Lash's cooldown by 0.5 seconds per upgrade.</string>
+			<array name="description-params"><array><s>cooldown</s><s>Cooldown reduction</s><s>0.5s</s><s>1s</s><s>1.5s</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>0 64 24 24</vec4></array>
+			<string name="id">bulwark_barbed_lash_counterweight</string>
+			<dict name="skill">
+				<dict name="binds"><float name="lash-cooldown-mul">0.8</float></dict>
+				<array name="modifiers"><array><dict><string name="class">Modifiers::BaseSkillModifier</string><array name="skill-tags"><s>barbed-lash</s></array><string name="cooldown-mul-bind">lash-cooldown-mul</string></dict></array></array>
+			</dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><float name="lash-cooldown-mul">0.6</float></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><float name="lash-cooldown-mul">0.4</float></dict></dict>
+			</array>
+		</dict>
+	</array>
+</dict>

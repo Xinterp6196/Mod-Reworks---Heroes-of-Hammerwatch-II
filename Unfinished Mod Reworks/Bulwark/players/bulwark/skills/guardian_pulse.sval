@@ -1,13 +1,14 @@
-﻿%include "players/skills_cost.inc"
+%include "players/skills_cost.inc"
 <dict>
 	<string name="name">Guardian Pulse</string>
 	<string name="type-name">.skills.type.spell</string>
-	<string name="description">Damage nearby enemies based on your thorns and grant nearby allies damage reduction for 8 seconds.</string>
+	<string name="description">Deal base physical damage plus damage based on your thorns to nearby enemies, and grant nearby allies damage reduction for 8 seconds.</string>
 
 	<array name="description-params">
-		<array><s>damage</s><s>damage</s><s>10%</s><s>20%</s><s>30%</s><s>40%</s><s>50%</s></array>
-		<array><s>reduction</s><s>damage reduction</s><s>2%</s><s>4%</s><s>6%</s><s>8%</s><s>10%</s></array>
-		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>28</s><s>28</s><s>28</s><s>28</s><s>28</s></array>
+		<array><s>base-damage</s><s>Base damage</s><s>40</s><s>60</s><s>80</s><s>100</s><s>120</s></array>
+		<array><s>damage</s><s>Damage</s><s>20%</s><s>35%</s><s>50%</s><s>65%</s><s>80%</s></array>
+		<array><s>reduction</s><s>Damage reduction</s><s>2%</s><s>4%</s><s>6%</s><s>8%</s><s>10%</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>28</s></array>
 		<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>8s</s></array>
 		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>6s</s></array>
 	</array>
@@ -37,7 +38,8 @@
 		<int name="mana-cost">28</int>
 
 		<dict name="binds">
-			<float name="thorns-percent">0.1</float>
+			<int name="base-damage">40</int>
+			<float name="thorns-percent">0.2</float>
 			<string name="guard-buff">players/bulwark/buffs_bulwark.sval:guard_1</string>
 			<string name="regen-buff">players/bulwark/buffs_bulwark.sval:noop</string>
 			<string name="haste-buff">players/bulwark/buffs_bulwark.sval:noop</string>
@@ -51,11 +53,23 @@
 					<string name="effect">players/warrior/effects/warcry.effect</string>
 					<bool name="attach-to-owner">true</bool>
 				</dict>
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_cast</string>
+				</dict>
 			</array>
 			<array name="cast">
 				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_impact</string>
+				</dict>
+				<dict>
+					<string name="class">SpawnEffect</string>
+					<string name="effect">players/paladin/effects/blessed_strike.effect?radius=24</string>
+				</dict>
+				<dict>
 					<string name="class">Explode</string>
-					<string name="fx">players/warrior/effects/warcry_area.effect</string>
+					<string name="fx">players/bulwark/effects/guardian_pulse_area.effect?radius=120</string>
 					<int name="radius">120</int>
 					<int name="min-radius">100</int>
 					<float name="dist-scaling">1000</float>
@@ -94,6 +108,10 @@
 							<bool name="only-actors">true</bool>
 						</dict>
 						<dict>
+							<string name="class">Damage</string>
+							<string name="physical-bind">base-damage</string>
+						</dict>
+						<dict>
 							<string name="class">StatBasedDamage</string>
 							<string name="type">physical</string>
 							<string name="stat">thorns</string>
@@ -101,7 +119,7 @@
 						</dict>
 						<dict>
 							<string name="class">AddStacks</string>
-							<string name="buff">tweak/buffs/stacks_actors.sval:bleeding</string>
+							<string name="buff">tweak/buffs/stacks_bulwark.sval:bulwark_bleeding</string>
 							<string name="stacks-bind">bleed-stacks</string>
 							<float name="chance">1</float>
 							<bool name="target-self">false</bool>
@@ -122,7 +140,8 @@
 			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
 			<int name="mana-cost">28</int>
 			<dict name="binds">
-				<float name="thorns-percent">0.2</float>
+				<int name="base-damage">60</int>
+				<float name="thorns-percent">0.35</float>
 				<string name="guard-buff">players/bulwark/buffs_bulwark.sval:guard_2</string>
 			</dict>
 		</dict>
@@ -130,7 +149,8 @@
 			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
 			<int name="mana-cost">28</int>
 			<dict name="binds">
-				<float name="thorns-percent">0.3</float>
+				<int name="base-damage">80</int>
+				<float name="thorns-percent">0.5</float>
 				<string name="guard-buff">players/bulwark/buffs_bulwark.sval:guard_3</string>
 			</dict>
 		</dict>
@@ -138,7 +158,8 @@
 			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
 			<int name="mana-cost">28</int>
 			<dict name="binds">
-				<float name="thorns-percent">0.4</float>
+				<int name="base-damage">100</int>
+				<float name="thorns-percent">0.65</float>
 				<string name="guard-buff">players/bulwark/buffs_bulwark.sval:guard_4</string>
 			</dict>
 		</dict>
@@ -146,7 +167,8 @@
 			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
 			<int name="mana-cost">28</int>
 			<dict name="binds">
-				<float name="thorns-percent">0.5</float>
+				<int name="base-damage">120</int>
+				<float name="thorns-percent">0.8</float>
 				<string name="guard-buff">players/bulwark/buffs_bulwark.sval:guard_5</string>
 			</dict>
 		</dict>
@@ -156,7 +178,7 @@
 		<dict>
 			<string name="name">Steady Recovery</string>
 			<string name="description">Guardian Pulse grants health regeneration to allies for its duration.</string>
-			<array name="description-params"><array><s>regen</s><s>health regeneration</s><s>4</s><s>8</s><s>12</s></array></array>
+			<array name="description-params"><array><s>regen</s><s>Health regeneration</s><s>4</s><s>8</s><s>12</s></array></array>
 			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>24 24 24 24</vec4></array>
 			<string name="id">bulwark_guardian_pulse_regen</string>
 			<dict name="skill"><dict name="binds"><string name="regen-buff">players/bulwark/buffs_bulwark.sval:regen_4</string></dict></dict>
@@ -168,7 +190,7 @@
 		<dict>
 			<string name="name">Serrated Pulse</string>
 			<string name="description">Guardian Pulse applies bleeding to damaged enemies.</string>
-			<array name="description-params"><array><s>stacks</s><s>stacks</s><s>1</s><s>2</s><s>3</s></array></array>
+			<array name="description-params"><array><s>stacks</s><s>Stacks</s><s>1</s><s>2</s><s>3</s></array></array>
 			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>24 24 24 24</vec4></array>
 			<string name="id">bulwark_guardian_pulse_bleed</string>
 			<dict name="skill"><dict name="binds"><int name="bleed-stacks">1</int></dict></dict>
@@ -180,7 +202,7 @@
 		<dict>
 			<string name="name">Tempered Strike</string>
 			<string name="description">Guardian Pulse grants you increased attack speed for its duration.</string>
-			<array name="description-params"><array><s>speed</s><s>attack speed</s><s>10%</s><s>20%</s><s>30%</s></array></array>
+			<array name="description-params"><array><s>speed</s><s>Attack speed</s><s>10%</s><s>20%</s><s>30%</s></array></array>
 			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>24 24 24 24</vec4></array>
 			<string name="id">bulwark_guardian_pulse_haste</string>
 			<dict name="skill"><dict name="binds"><string name="haste-buff">players/bulwark/buffs_bulwark.sval:haste_10</string></dict></dict>

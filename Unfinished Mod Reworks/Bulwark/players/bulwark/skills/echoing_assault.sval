@@ -1,12 +1,12 @@
-﻿%include "players/skills_cost.inc"
+%include "players/skills_cost.inc"
 <dict>
 	<string name="name">Echoing Assault</string>
 	<string name="type-name">.skills.type.passive</string>
 	<string name="description">Your raw attacks deal less damage, but repeat as an unavoidable echo. Damage-over-time, thorns, and reflected damage do not trigger echoes.</string>
 
 	<array name="description-params">
-		<array><s>damage-reduction</s><s>attack damage reduction</s><s>4%</s><s>8%</s><s>12%</s><s>16%</s><s>20%</s></array>
-		<array><s>echo</s><s>echo damage</s><s>10%</s><s>20%</s><s>30%</s><s>40%</s><s>50%</s></array>
+		<array><s>damage-reduction</s><s>Attack damage reduction</s><s>24%</s><s>21%</s><s>18%</s><s>15%</s><s>12%</s></array>
+		<array><s>echo</s><s>Echo damage</s><s>10%</s><s>14%</s><s>18%</s><s>22%</s><s>26%</s></array>
 	</array>
 
 	<array name="icon">
@@ -22,7 +22,7 @@
 		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
 		<string name="class">Skills::PassiveSkill</string>
 		<dict name="binds">
-			<vec2 name="attack-multiplier">0.96 0.96</vec2>
+			<vec2 name="attack-multiplier">0.76 0.76</vec2>
 			<float name="echo-percent">0.10</float>
 			<float name="second-echo-chance">0</float>
 			<float name="third-echo-chance">0</float>
@@ -37,8 +37,10 @@
 					<string name="attack-mul-bind">attack-multiplier</string>
 				</dict>
 				<dict>
-					<string name="class">Modifiers::TriggerEffect</string>
-					<string name="trigger">attack</string>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<string name="skill-type">mainhand</string>
+					<string name="trigger">hit</string>
+					<bool name="target-self">false</bool>
 					<float name="chance">1</float>
 					<int name="timeout">0</int>
 					<array name="effects">
@@ -57,8 +59,10 @@
 					</array>
 				</dict>
 				<dict>
-					<string name="class">Modifiers::TriggerEffect</string>
-					<string name="trigger">attack</string>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<string name="skill-type">mainhand</string>
+					<string name="trigger">hit</string>
+					<bool name="target-self">false</bool>
 					<string name="chance-bind">second-echo-chance</string>
 					<array name="effects">
 						<dict>
@@ -76,8 +80,10 @@
 					</array>
 				</dict>
 				<dict>
-					<string name="class">Modifiers::TriggerEffect</string>
-					<string name="trigger">attack</string>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<string name="skill-type">mainhand</string>
+					<string name="trigger">hit</string>
+					<bool name="target-self">false</bool>
 					<string name="chance-bind">third-echo-chance</string>
 					<array name="effects">
 						<dict>
@@ -95,8 +101,10 @@
 					</array>
 				</dict>
 				<dict>
-					<string name="class">Modifiers::TriggerEffect</string>
-					<string name="trigger">attack</string>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<string name="skill-type">mainhand</string>
+					<string name="trigger">hit</string>
+					<bool name="target-self">false</bool>
 					<string name="chance-bind">fourth-echo-chance</string>
 					<array name="effects">
 						<dict>
@@ -118,17 +126,17 @@
 	</dict>
 
 	<array name="upgrades">
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><dict name="binds"><vec2 name="attack-multiplier">0.92 0.92</vec2><float name="echo-percent">0.20</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><dict name="binds"><vec2 name="attack-multiplier">0.88 0.88</vec2><float name="echo-percent">0.30</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_4</int><dict name="binds"><vec2 name="attack-multiplier">0.84 0.84</vec2><float name="echo-percent">0.40</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><dict name="binds"><vec2 name="attack-multiplier">0.80 0.80</vec2><float name="echo-percent">0.50</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><dict name="binds"><vec2 name="attack-multiplier">0.79 0.79</vec2><float name="echo-percent">0.14</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><dict name="binds"><vec2 name="attack-multiplier">0.82 0.82</vec2><float name="echo-percent">0.18</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_4</int><dict name="binds"><vec2 name="attack-multiplier">0.85 0.85</vec2><float name="echo-percent">0.22</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><dict name="binds"><vec2 name="attack-multiplier">0.88 0.88</vec2><float name="echo-percent">0.26</float></dict></dict>
 	</array>
 
 	<array name="modifier-skills">
 		<dict>
 			<string name="name">Repeated Reprisal</string>
 			<string name="description">Echo each attack an additional 1, 2, or 3 times.</string>
-			<array name="description-params"><array><s>echoes</s><s>echoes</s><s>1</s><s>2</s><s>3</s></array></array>
+			<array name="description-params"><array><s>echoes</s><s>Echoes</s><s>1</s><s>2</s><s>3</s></array></array>
 			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>96 0 24 24</vec4></array>
 			<string name="id">bulwark_echoing_assault_repeats</string>
 			<dict name="skill">
@@ -142,7 +150,7 @@
 		<dict>
 			<string name="name">Thorn Resonance</string>
 			<string name="description">Each echo gains additional pure damage based on your thorns.</string>
-			<array name="description-params"><array><s>bonus</s><s>thorns added</s><s>33%</s><s>66%</s><s>100%</s></array></array>
+			<array name="description-params"><array><s>bonus</s><s>Thorns added</s><s>33%</s><s>66%</s><s>100%</s></array></array>
 			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>96 0 24 24</vec4></array>
 			<string name="id">bulwark_echoing_assault_thorns</string>
 			<dict name="skill"><dict name="binds"><float name="thorns-echo-bonus">0.33</float></dict></dict>
@@ -154,7 +162,7 @@
 		<dict>
 			<string name="name">Thorn-Fed Vitality</string>
 			<string name="description">Gain maximum health based on your thorns.</string>
-			<array name="description-params"><array><s>health</s><s>health from thorns</s><s>15%</s><s>30%</s><s>45%</s></array></array>
+			<array name="description-params"><array><s>health</s><s>Health from thorns</s><s>15%</s><s>30%</s><s>45%</s></array></array>
 			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>96 0 24 24</vec4></array>
 			<string name="id">bulwark_echoing_assault_vitality</string>
 			<dict name="skill">

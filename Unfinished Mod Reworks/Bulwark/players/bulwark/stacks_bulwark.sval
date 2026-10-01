@@ -1,0 +1,68 @@
+<loader>ActorBuffStackDef::LoadMultiple</loader>
+<array>
+	<dict>
+		<string name="id">flagellant_fervor</string>
+		<string name="name">Fervor</string>
+		<string name="description">A growing zeal that may empower thorn effects.</string>
+		<int name="max">5</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="fx-player-facing">true</bool>
+		<bool name="display-timer-radius">true</bool>
+		<dict name="timer">
+			<int name="time">6000</int>
+			<int name="add-stack">-1</int>
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+			<bool name="gain-reset">true</bool>
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">true</bool>
+		</dict>
+		<dict name="buff">
+			<bool name="debuff">false</bool>
+			<array name="hud"><string>players/icons_skills.png</string><int>100</int><vec4>192 384 14 14</vec4></array>
+			<array name="modifiers"><dict><string name="class">Modifiers::DummyModifier</string></dict></array>
+		</dict>
+	</dict>
+	<dict>
+		<string name="id">ruthless_carapace</string>
+		<string name="name">Ruthless Carapace</string>
+		<string name="description">Accumulated thorned resolve that strengthens the Bulwark.</string>
+		<int name="max">8</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="fx-player-facing">true</bool>
+		<bool name="display-timer-radius">true</bool>
+		<bool name="extrapolate-intensity">true</bool>
+		<dict name="timer">
+			<int name="time">5000</int>
+			<int name="add-stack">-1</int>
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+			<bool name="gain-reset">true</bool>
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">true</bool>
+		</dict>
+		<dict name="buff">
+			<bool name="debuff">false</bool>
+			<array name="hud"><string>players/icons_skills.png</string><int>100</int><vec4>168 0 14 14</vec4></array>
+			<dict name="tick">
+				<int name="freq">500</int>
+				<array name="effects">
+					<dict>
+						<string name="class">Explode</string>
+						<string name="fx">players/warrior/effects/tremor_strike.effect?radius=120</string>
+						<int name="radius">120</int>
+						<int name="min-radius">6</int>
+						<float name="dist-scaling">1000</float>
+						<array name="effects">
+							<dict><float name="enemy-dmg">1</float><bool name="only-actors">true</bool></dict>
+							<dict><string name="class">StatBasedDamage</string><string name="type">physical</string><string name="stat">thorns</string><float name="amount">1</float></dict>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<array name="modifiers"><dict><string name="class">Modifiers::DummyModifier</string></dict></array>
+		</dict>
+	</dict>
+</array>

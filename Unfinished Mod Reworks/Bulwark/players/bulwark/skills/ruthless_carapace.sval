@@ -1,0 +1,106 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Ruthless Carapace</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">Taking a hit builds up to eight stacks of Ruthless Carapace. Each stack increases your thorns by 6% and emits a physical pulse that deals damage equal to your thorns; the stacks fade over time. The Thorned Renewal upgrade restores a small amount of health when you are hurt.</string>
+	<array name="description-params">
+		<array><s>stacks-max</s><s>.skills.desc.params.stacks.max</s><s>8</s></array>
+		<array><s>thorns-per-stack</s><s>Thorns increase per stack</s><s>6%</s></array>
+		<array><s>stacks-duration</s><b>t</b><s>.skills.desc.params.stacks.duration</s><s>5s</s><s>5.5s</s><s>6s</s><s>6.5s</s><s>7s</s></array>
+		<array><s>tick-rate</s><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+	</array>
+	<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>120 64 24 24</vec4></array>
+	<string name="id">bulwark_ruthless_carapace</string>
+	<array name="tags"><s>passive</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+		<dict name="binds"><int name="stacks-time-add">0</int><float name="thorns-per-stack">0.06</float><float name="thorned-renewal-heal">0</float><int name="spiked-carapace-thorns">0</int><float name="sustaining-carapace-regen">0</float></dict>
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ModifyStack</string>
+					<string name="buff">players/bulwark/stacks_bulwark.sval:ruthless_carapace</string>
+					<string name="add-time-bind">stacks-time-add</string>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::InjectModifiersIntoStack</string>
+					<string name="buff">players/bulwark/stacks_bulwark.sval:ruthless_carapace</string>
+					<array name="modifiers">
+						<dict><string name="class">Modifiers::ConvertStat</string><string name="from">thorns</string><string name="to">thorns</string><string name="mul-bind">thorns-per-stack</string><bool name="add">true</bool></dict>
+						<dict><string name="class">Modifiers::AddThorns</string><string name="thorns-bind">spiked-carapace-thorns</string></dict>
+						<dict><string name="class">Modifiers::AttribAdd</string><string name="health-regen-bind">sustaining-carapace-regen</string></dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::TriggerEffect</string>
+					<string name="trigger">hurt</string>
+					<bool name="target-self">true</bool>
+					<int name="timeout">1000</int>
+					<array name="effects">
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/warrior/tremor_strikes/tremor_strikes</string>
+						</dict>
+						<dict><string name="class">AddStacks</string><bool name="target-self">true</bool><string name="buff">players/bulwark/stacks_bulwark.sval:ruthless_carapace</string><int name="stacks">1</int></dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::TriggerEffect</string>
+					<string name="trigger">hurt</string>
+					<bool name="target-self">true</bool>
+					<float name="chance">1</float>
+					<int name="timeout">3000</int>
+					<array name="effects">
+						<dict><string name="class">HPBasedHeal</string><string name="heal-bind">thorned-renewal-heal</string><bool name="curr-hp">false</bool></dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+	<array name="upgrades">
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int><dict name="binds"><int name="stacks-time-add">500</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int><dict name="binds"><int name="stacks-time-add">1000</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int><dict name="binds"><int name="stacks-time-add">1500</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int><dict name="binds"><int name="stacks-time-add">2000</int></dict></dict>
+	</array>
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Thorned Renewal</string>
+			<string name="description">When hurt, restore a small portion of your maximum health. Can trigger once every 3 seconds.</string>
+			<array name="description-params"><array><s>heal</s><s>Maximum health restored</s><s>1%</s><s>1.5%</s><s>2%</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>120 64 24 24</vec4></array>
+			<string name="id">bulwark_ruthless_carapace_heal</string>
+			<dict name="skill"><dict name="binds"><float name="thorned-renewal-heal">0.01</float></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><float name="thorned-renewal-heal">0.015</float></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><float name="thorned-renewal-heal">0.02</float></dict></dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Spiked Carapace</string>
+			<string name="description">Each Ruthless Carapace stack grants additional thorns.</string>
+			<array name="description-params"><array><s>thorns</s><s>Additional thorns per stack</s><s>2</s><s>4</s><s>6</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>120 64 24 24</vec4></array>
+			<string name="id">bulwark_ruthless_carapace_thorns</string>
+			<dict name="skill"><dict name="binds"><int name="spiked-carapace-thorns">2</int></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><int name="spiked-carapace-thorns">4</int></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><int name="spiked-carapace-thorns">6</int></dict></dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Sustaining Carapace</string>
+			<string name="description">Each active Ruthless Carapace stack grants a small amount of health regeneration.</string>
+			<array name="description-params"><array><s>regen</s><s>Health regeneration per stack</s><s>0.1</s><s>0.2</s><s>0.3</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>120 64 24 24</vec4></array>
+			<string name="id">bulwark_ruthless_carapace_regen</string>
+			<dict name="skill"><dict name="binds"><float name="sustaining-carapace-regen">0.1</float></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><float name="sustaining-carapace-regen">0.2</float></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><float name="sustaining-carapace-regen">0.3</float></dict></dict>
+			</array>
+		</dict>
+	</array>
+</dict>

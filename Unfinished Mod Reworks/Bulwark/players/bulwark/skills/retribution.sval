@@ -1,0 +1,90 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Retribution</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">Gain thorns directly and from a portion of your maximum health. The Mending Rebuke upgrade restores a small amount of health when you are hurt.</string>
+	<array name="description-params">
+		<array><s>thorns-add</s><s>Thorns</s><s>15</s><s>30</s><s>45</s><s>60</s><s>75</s></array>
+		<array><s>thorns-health-mul</s><s>Thorns from max health</s><s>2%</s><s>4%</s><s>6%</s><s>8%</s><s>10%</s></array>
+	</array>
+	<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>24 64 24 24</vec4></array>
+	<string name="id">bulwark_retribution</string>
+	<array name="tags"><s>passive</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+		<dict name="binds"><int name="thorns-add">15</int><float name="thorns-health-mul">0.02</float><float name="mending-rebuke-heal">0</float><float name="unyielding-dmg-taken">1</float><float name="vital-thorns-mul">0</float></dict>
+		<array name="modifiers">
+			<array>
+				<dict><string name="class">Modifiers::AddThorns</string><string name="thorns-bind">thorns-add</string></dict>
+				<dict><string name="class">Modifiers::ConvertStat</string><string name="from">health</string><string name="to">thorns</string><string name="mul-bind">thorns-health-mul</string><bool name="add">true</bool></dict>
+				<dict><string name="class">Modifiers::Armor</string><string name="dmg-taken-mul-bind">unyielding-dmg-taken</string></dict>
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<string name="trigger">hurt</string>
+					<bool name="target-self">true</bool>
+					<float name="chance">1</float>
+					<int name="timeout">3000</int>
+					<array name="effects">
+						<dict><string name="class">HPBasedHeal</string><string name="heal-bind">mending-rebuke-heal</string><bool name="curr-hp">false</bool></dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+	<array name="upgrades">
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int><dict name="binds"><int name="thorns-add">30</int><float name="thorns-health-mul">0.04</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int><dict name="binds"><int name="thorns-add">45</int><float name="thorns-health-mul">0.06</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int><dict name="binds"><int name="thorns-add">60</int><float name="thorns-health-mul">0.08</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int><dict name="binds"><int name="thorns-add">75</int><float name="thorns-health-mul">0.10</float></dict></dict>
+	</array>
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Mending Rebuke</string>
+			<string name="description">When hurt, restore a small portion of your maximum health. Can trigger once every 3 seconds.</string>
+			<array name="description-params"><array><s>heal</s><s>Maximum health restored</s><s>1%</s><s>1.5%</s><s>2%</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>24 64 24 24</vec4></array>
+			<string name="id">bulwark_retribution_heal</string>
+			<dict name="skill"><dict name="binds"><float name="mending-rebuke-heal">0.01</float></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><float name="mending-rebuke-heal">0.015</float></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><float name="mending-rebuke-heal">0.02</float></dict></dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Vital Spines</string>
+			<string name="description">Gain additional thorns from Vitality.</string>
+			<array name="description-params"><array><s>thorns</s><s>Thorns per vitality</s><s>0.1</s><s>0.2</s><s>0.3</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>24 64 24 24</vec4></array>
+			<string name="id">bulwark_retribution_vital_spines</string>
+			<dict name="skill">
+				<dict name="binds"><float name="vital-thorns-mul">0.1</float></dict>
+				<array name="modifiers"><array><dict><string name="class">Modifiers::ConvertStat</string><string name="from">vit</string><string name="to">thorns</string><string name="mul-bind">vital-thorns-mul</string><bool name="add">true</bool></dict></array></array>
+			</dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><float name="vital-thorns-mul">0.2</float></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><float name="vital-thorns-mul">0.3</float></dict></dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Unyielding Hide</string>
+			<string name="description">Reduce all damage taken by a small amount.</string>
+			<array name="description-params"><array><s>reduction</s><s>Damage reduction</s><s>3%</s><s>5%</s><s>7%</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>24 64 24 24</vec4></array>
+			<string name="id">bulwark_retribution_unyielding</string>
+			<dict name="skill">
+				<dict name="binds"><float name="unyielding-dmg-taken">0.97</float></dict>
+				<array name="modifiers">
+					<array><null /></array>
+					<array><null /></array>
+					<array><dict><string name="class">Modifiers::Armor</string><string name="dmg-taken-mul-bind">unyielding-dmg-taken</string></dict></array>
+				</array>
+			</dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><float name="unyielding-dmg-taken">0.95</float></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><float name="unyielding-dmg-taken">0.93</float></dict></dict>
+			</array>
+		</dict>
+	</array>
+</dict>

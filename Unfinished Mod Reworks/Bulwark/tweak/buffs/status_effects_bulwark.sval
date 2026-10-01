@@ -1,0 +1,79 @@
+<svals>
+	<dict name="bulwark_vulnerability_minor">
+		<array name="tags">
+			<string>debuff</string>
+			<string>vulnerability</string>
+		</array>
+		<bool name="debuff">true</bool>
+		<int name="duration">5000</int>
+		<string name="icon">special/icons/vulnerability.unit</string>
+		<float name="dmg-taken-mul">1.1</float>
+		<string name="category">vulnerability</string>
+		<int name="category-level">5000</int>
+	</dict>
+
+	<dict name="bulwark_vulnerability">
+		<array name="tags">
+			<string>debuff</string>
+			<string>vulnerability</string>
+		</array>
+		<bool name="debuff">true</bool>
+		<int name="duration">6000</int>
+		<string name="icon">special/icons/vulnerability.unit</string>
+		<float name="dmg-taken-mul">1.2</float>
+		<string name="category">vulnerability</string>
+		<int name="category-level">6000</int>
+	</dict>
+
+	<dict name="bulwark_vulnerability_greater">
+		<array name="tags">
+			<string>debuff</string>
+			<string>vulnerability</string>
+		</array>
+		<bool name="debuff">true</bool>
+		<int name="duration">7000</int>
+		<string name="icon">special/icons/vulnerability.unit</string>
+		<float name="dmg-taken-mul">1.3</float>
+		<string name="category">vulnerability</string>
+		<int name="category-level">7000</int>
+	</dict>
+
+	<dict name="bulwark_weakness_minor">
+		<array name="tags">
+			<string>debuff</string>
+			<string>weakness</string>
+		</array>
+		<bool name="debuff">true</bool>
+		<int name="duration">4000</int>
+		<string name="icon">special/icons/weakness.unit</string>
+		<float name="dmg-mul">0.9</float>
+		<string name="category">weakness</string>
+		<int name="category-level">4000</int>
+	</dict>
+
+	<dict name="bulwark_weakness">
+		<array name="tags">
+			<string>debuff</string>
+			<string>weakness</string>
+		</array>
+		<bool name="debuff">true</bool>
+		<int name="duration">6000</int>
+		<string name="icon">special/icons/weakness.unit</string>
+		<float name="dmg-mul">0.8</float>
+		<string name="category">weakness</string>
+		<int name="category-level">6000</int>
+	</dict>
+
+	<dict name="bulwark_weakness_greater">
+		<array name="tags">
+			<string>debuff</string>
+			<string>weakness</string>
+		</array>
+		<bool name="debuff">true</bool>
+		<int name="duration">8000</int>
+		<string name="icon">special/icons/weakness.unit</string>
+		<float name="dmg-mul">0.7</float>
+		<string name="category">weakness</string>
+		<int name="category-level">8000</int>
+	</dict>
+</svals>

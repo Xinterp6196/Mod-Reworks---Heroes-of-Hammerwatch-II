@@ -1,0 +1,97 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Thorn Totem</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">Place a rooted totem that pulses physical damage based on 60-100% of your Thorns, depending on skill rank.</string>
+	<array name="description-params">
+		<array><s>tick-rate</s><b>t</b><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+		<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>6s</s><s>8s</s><s>10s</s><s>12s</s><s>14s</s></array>
+		<array><s>max-traps</s><s>.skills.desc.params.traps.max</s><s>3</s><s>3</s><s>4</s><s>4</s><s>5</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>30</s><s>30</s><s>40</s><s>40</s><s>50</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>2s</s></array>
+	</array>
+	<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>48 64 24 24</vec4></array>
+	<string name="id">bulwark_thorn_totem</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">cast</string>
+		<int name="anim-length">600</int>
+		<int name="cooldown">2000</int>
+		<int name="castpoint">150</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0.1</float>
+		<ivec2 name="move-speed">0 250</ivec2>
+		<ivec2 name="blocking">0 250</ivec2>
+		<bool name="repeating">false</bool>
+		<int name="mana-cost">30</int>
+		<dict name="binds">
+			<string name="totem-unit">players/bulwark/units/thorn_totem.unit</string>
+			<int name="totem-num-max">2</int>
+			<float name="totem-thorns-mul">0.60</float>
+			<float name="totem-bonus-thorns-mul">0</float>
+			<float name="totem-death-thorns-mul">0</float>
+			<int name="totem-bleed-stacks">0</int>
+			<int name="totem-ttl">6000</int>
+		</dict>
+		<array name="modifiers">
+			<array>
+				<dict><string name="class">Modifiers::ModifySummons</string><string name="unit">players/bulwark/units/thorn_totem.unit</string><string name="add-max-num-bind">totem-num-max</string></dict>
+			</array>
+		</array>
+		<dict name="actions">
+			<array name="cast">
+				<dict><string name="class">SpawnUnit</string><string name="unit-bind">totem-unit</string><int name="spawn-dist">16</int></dict>
+				<dict><string name="class">PlaySound</string><string name="sound">event:/sfx/player/classes/warrior/ancient_totems/ancient_totems_spawn</string></dict>
+			</array>
+		</dict>
+		<array name="timeline"><i>150</i><s>cast</s></array>
+	</dict>
+	<array name="upgrades">
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int><int name="mana-cost">30</int><dict name="binds"><float name="totem-thorns-mul">0.70</float><int name="totem-ttl">8000</int><int name="totem-num-max">2</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int><int name="mana-cost">40</int><dict name="binds"><float name="totem-thorns-mul">0.80</float><int name="totem-ttl">10000</int><int name="totem-num-max">3</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int><int name="mana-cost">40</int><dict name="binds"><float name="totem-thorns-mul">0.90</float><int name="totem-ttl">12000</int><int name="totem-num-max">3</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int><int name="mana-cost">50</int><dict name="binds"><float name="totem-thorns-mul">1.00</float><int name="totem-ttl">14000</int><int name="totem-num-max">4</int></dict></dict>
+	</array>
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Barbed Roots</string>
+			<string name="description">Totem pulses apply bleeding.</string>
+			<array name="description-params"><array><s>stacks</s><s>Bleeding stacks</s><s>1</s><s>2</s><s>3</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>48 64 24 24</vec4></array>
+			<string name="id">bulwark_thorn_totem_bleed</string>
+			<dict name="skill"><dict name="binds"><int name="totem-bleed-stacks">1</int></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><int name="totem-bleed-stacks">2</int></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><int name="totem-bleed-stacks">3</int></dict></dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Thornstone Heart</string>
+			<string name="description">Totem pulses deal additional damage based on your thorns.</string>
+			<array name="description-params"><array><s>damage</s><s>Additional thorns damage</s><s>15%</s><s>30%</s><s>45%</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>48 64 24 24</vec4></array>
+			<string name="id">bulwark_thorn_totem_damage</string>
+			<dict name="skill"><dict name="binds"><float name="totem-bonus-thorns-mul">0.15</float></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><float name="totem-bonus-thorns-mul">0.30</float></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><float name="totem-bonus-thorns-mul">0.45</float></dict></dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Lasting Rupture</string>
+			<string name="description">When a totem expires or is destroyed, it bursts for physical damage based on your thorns.</string>
+			<array name="description-params"><array><s>damage</s><s>Thorns damage on expiry</s><s>50%</s><s>100%</s><s>150%</s></array></array>
+			<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>48 64 24 24</vec4></array>
+			<string name="id">bulwark_thorn_totem_rupture</string>
+			<dict name="skill"><dict name="binds"><float name="totem-death-thorns-mul">0.50</float></dict></dict>
+			<array name="upgrades">
+				<dict><string name="quality">uncommon</string><dict name="binds"><float name="totem-death-thorns-mul">1.00</float></dict></dict>
+				<dict><string name="quality">rare</string><dict name="binds"><float name="totem-death-thorns-mul">1.50</float></dict></dict>
+			</array>
+		</dict>
+	</array>
+</dict>

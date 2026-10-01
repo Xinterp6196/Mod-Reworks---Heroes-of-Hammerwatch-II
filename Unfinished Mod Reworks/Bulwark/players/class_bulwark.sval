@@ -48,7 +48,7 @@
 	<array name="starting-equipment">
 		<string>chest_str_t1a</string>
 		<string>feet_str_t1a</string>
-		<string>mainhand_mace_01</string>
+		<string>mainhand_longsword_01</string>
 		<string>offhand_shield_01</string>
 	</array>
 %endblock
@@ -72,6 +72,60 @@
 			<string>players/bulwark/skills/echoing_assault.sval</string>
 		</array>
 
+		%block BulwarkStats
+	</dict>
+
+	<dict>
+		<string name="parent">bulwark</string>
+		<string name="id">bulwark_flagellant</string>
+		<string name="name">Flayer</string>
+		<string name="description">A relentless fighter who turns each lash into thorns and retribution.</string>
+		<array name="icon"><s>players/icons_skills.png</s><i>100</i><vec4>192 384 24 24</vec4></array>
+		<array name="skills">
+			<string>players/attacks/dash.sval</string>
+			<string>players/bulwark/skills/thorn_burst.sval</string>
+			<string>players/bulwark/skills/guardian_pulse.sval</string>
+			<string>players/bulwark/skills/barbed_carapace.sval</string>
+			<string>players/bulwark/skills/echoing_assault.sval</string>
+			<string>players/bulwark/skills/flagellant_lash.sval</string>
+			<string>players/bulwark/skills/retribution.sval</string>
+		</array>
+		%block BulwarkStats
+	</dict>
+
+	<dict>
+		<string name="parent">bulwark</string>
+		<string name="id">bulwark_primalist</string>
+		<string name="name">Totemic</string>
+		<string name="description">A keeper of living stone who roots totems and sends thorns through the ground.</string>
+		<array name="icon"><s>players/icons_skills.png</s><i>100</i><vec4>216 312 24 24</vec4></array>
+		<array name="skills">
+			<string>players/attacks/dash.sval</string>
+			<string>players/bulwark/skills/thorn_burst.sval</string>
+			<string>players/bulwark/skills/guardian_pulse.sval</string>
+			<string>players/bulwark/skills/barbed_carapace.sval</string>
+			<string>players/bulwark/skills/echoing_assault.sval</string>
+			<string>players/bulwark/skills/thorn_totem.sval</string>
+			<string>players/bulwark/skills/stonebreak.sval</string>
+		</array>
+		%block BulwarkStats
+	</dict>
+
+	<dict>
+		<string name="parent">bulwark</string>
+		<string name="id">bulwark_radiance</string>
+		<string name="name">Ironclad</string>
+		<string name="description">A radiant bulwark that gathers thorned resolve before expelling it in a burst.</string>
+		<array name="icon"><s>players/icons_skills.png</s><i>100</i><vec4>24 24 24 24</vec4></array>
+		<array name="skills">
+			<string>players/attacks/dash.sval</string>
+			<string>players/bulwark/skills/thorn_burst.sval</string>
+			<string>players/bulwark/skills/guardian_pulse.sval</string>
+			<string>players/bulwark/skills/barbed_carapace.sval</string>
+			<string>players/bulwark/skills/echoing_assault.sval</string>
+			<string>players/bulwark/skills/expel.sval</string>
+			<string>players/bulwark/skills/ruthless_carapace.sval</string>
+		</array>
 		%block BulwarkStats
 	</dict>
 </array>

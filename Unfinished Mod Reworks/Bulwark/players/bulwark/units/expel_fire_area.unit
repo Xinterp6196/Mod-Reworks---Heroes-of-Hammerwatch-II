@@ -1,0 +1,29 @@
+<unit layer="-1">
+	<behavior class="DangerAreaBehaviorP">
+		<int name="freq">500</int>
+		<int name="ttl">4000</int>
+		<string name="sound-loop">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_fire_loop</string>
+		<array name="effects">
+			<dict>
+				<string name="class">StatBasedDamage</string>
+				<string name="type">fire</string>
+				<string name="stat">thorns</string>
+				<string name="amount-bind">expel-fire-area-thorns-mul</string>
+				<bool name="true-strike">true</bool>
+			</dict>
+			<dict>
+				<string name="class">PlaySound</string>
+				<string name="sound">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_fire_hit</string>
+			</dict>
+		</array>
+	</behavior>
+	<scenes>
+		<scene>
+			<collision static="false">
+				<circle sensor="true" aim-through="true" radius="24" />
+			</collision>
+			<effect delay="500" src="players/paladin/effects/judgement_fire.effect?radius=24" />
+			<effect src="players/paladin/effects/judgement_fire_start.effect?radius=24" />
+		</scene>
+	</scenes>
+</unit>

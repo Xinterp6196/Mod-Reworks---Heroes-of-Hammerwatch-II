@@ -1,0 +1,99 @@
+<loader>ActorBuffStackDef::LoadMultiple</loader>
+<array>
+	<dict>
+		<string name="id">bulwark_bleeding</string>
+		<int name="max">10</int>
+		<bool name="extrapolate-intensity">true</bool>
+		<bool name="refresh-on-max">true</bool>
+
+		<dict name="timer">
+			<int name="time">3000</int>
+			<int name="add-stack">-999</int>
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+			<bool name="gain-reset">true</bool>
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">false</bool>
+		</dict>
+
+		<dict name="buff">
+			<bool name="debuff">true</bool>
+			<array name="tags">
+				<string>debuff</string>
+				<string>bleeding</string>
+			</array>
+			<string name="icon">special/icons/bleeding.unit</string>
+
+			<dict name="tick">
+				<int name="freq">999</int>
+				<array name="effects">
+					<dict>
+						<string name="class">Damage</string>
+						<int name="physical">10</int>
+						<bool name="true-strike">true</bool>
+						<bool name="dot">true</bool>
+					</dict>
+					<dict>
+						<string name="class">SpawnEffect</string>
+						<string name="effect">effects/generic/actor/actor_blood_loss.effect</string>
+					</dict>
+				</array>
+			</dict>
+
+			<dict name="move">
+				<int name="freq">32</int>
+				<array name="effects">
+					<dict>
+						<string name="class">Damage</string>
+						<int name="physical">10</int>
+						<bool name="true-strike">true</bool>
+						<bool name="dot">true</bool>
+					</dict>
+					<dict>
+						<string name="class">SpawnEffect</string>
+						<string name="effect">effects/generic/actor/actor_blood_loss.effect</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</dict>
+	<dict>
+		<string name="id">bulwark_poison</string>
+		<int name="max">10</int>
+		<bool name="extrapolate-intensity">true</bool>
+		<bool name="refresh-on-max">true</bool>
+
+		<dict name="timer">
+			<int name="time">5000</int>
+			<int name="add-stack">-999</int>
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+			<bool name="gain-reset">true</bool>
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">false</bool>
+		</dict>
+
+		<dict name="buff">
+			<bool name="debuff">true</bool>
+			<array name="tags">
+				<string>debuff</string>
+				<string>poison</string>
+			</array>
+			<string name="icon">special/icons/poison.unit</string>
+
+			<dict name="tick">
+				<int name="freq">500</int>
+				<array name="effects">
+					<dict>
+						<string name="class">Damage</string>
+						<int name="poison">25</int>
+						<bool name="true-strike">true</bool>
+						<bool name="dot">true</bool>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</dict>
+</array>
