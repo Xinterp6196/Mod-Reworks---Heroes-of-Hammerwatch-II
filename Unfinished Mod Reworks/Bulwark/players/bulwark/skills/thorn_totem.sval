@@ -54,7 +54,7 @@
 		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int><int name="mana-cost">30</int><dict name="binds"><float name="totem-thorns-mul">0.70</float><int name="totem-ttl">8000</int><int name="totem-num-max">2</int></dict></dict>
 		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int><int name="mana-cost">40</int><dict name="binds"><float name="totem-thorns-mul">0.80</float><int name="totem-ttl">10000</int><int name="totem-num-max">3</int></dict></dict>
 		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int><int name="mana-cost">40</int><dict name="binds"><float name="totem-thorns-mul">0.90</float><int name="totem-ttl">12000</int><int name="totem-num-max">3</int></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int><int name="mana-cost">50</int><dict name="binds"><float name="totem-thorns-mul">1.00</float><int name="totem-ttl">14000</int><int name="totem-num-max">4</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int><int name="mana-cost">50</int><dict name="binds"><float name="totem-thorns-mul">1.00</float><int name="totem-ttl">14000</int><int name="totem-num-max">5</int></dict></dict>
 	</array>
 	<array name="modifier-skills">
 		<dict>

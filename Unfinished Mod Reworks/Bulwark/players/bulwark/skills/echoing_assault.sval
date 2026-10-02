@@ -5,7 +5,7 @@
 	<string name="description">Your raw attacks deal less damage, but repeat as an unavoidable echo. Damage-over-time, thorns, and reflected damage do not trigger echoes.</string>
 
 	<array name="description-params">
-		<array><s>damage-reduction</s><s>Attack damage reduction</s><s>24%</s><s>21%</s><s>18%</s><s>15%</s><s>12%</s></array>
+		<array><s>damage-reduction</s><s>Attack damage reduction</s><s>15%</s><s>15%</s><s>15%</s><s>15%</s><s>15%</s></array>
 		<array><s>echo</s><s>Echo damage</s><s>10%</s><s>14%</s><s>18%</s><s>22%</s><s>26%</s></array>
 	</array>
 
@@ -22,7 +22,7 @@
 		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
 		<string name="class">Skills::PassiveSkill</string>
 		<dict name="binds">
-			<vec2 name="attack-multiplier">0.76 0.76</vec2>
+			<vec2 name="attack-multiplier">0.85 0.85</vec2>
 			<float name="echo-percent">0.10</float>
 			<float name="second-echo-chance">0</float>
 			<float name="third-echo-chance">0</float>
@@ -126,10 +126,10 @@
 	</dict>
 
 	<array name="upgrades">
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><dict name="binds"><vec2 name="attack-multiplier">0.79 0.79</vec2><float name="echo-percent">0.14</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><dict name="binds"><vec2 name="attack-multiplier">0.82 0.82</vec2><float name="echo-percent">0.18</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><dict name="binds"><vec2 name="attack-multiplier">0.85 0.85</vec2><float name="echo-percent">0.14</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><dict name="binds"><vec2 name="attack-multiplier">0.85 0.85</vec2><float name="echo-percent">0.18</float></dict></dict>
 		<dict><int name="skill-cost">SKILLCOSTLEVEL_4</int><dict name="binds"><vec2 name="attack-multiplier">0.85 0.85</vec2><float name="echo-percent">0.22</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><dict name="binds"><vec2 name="attack-multiplier">0.88 0.88</vec2><float name="echo-percent">0.26</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><dict name="binds"><vec2 name="attack-multiplier">0.85 0.85</vec2><float name="echo-percent">0.26</float></dict></dict>
 	</array>
 
 	<array name="modifier-skills">

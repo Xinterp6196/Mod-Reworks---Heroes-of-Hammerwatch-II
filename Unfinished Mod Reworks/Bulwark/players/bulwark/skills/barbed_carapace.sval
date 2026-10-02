@@ -2,7 +2,7 @@
 <dict>
 	<string name="name">Barbed Carapace</string>
 	<string name="type-name">.skills.type.passive</string>
-	<string name="description">Increase thorns and improve their scaling. Each point of Strength also grants 0.25 thorns.</string>
+	<string name="description">Increase thorns and improve their scaling. Each point of Strength also grants 0.33 thorns.</string>
 
 	<array name="description-params">
 		<array><s>thorns</s><s>Thorns</s><s>5</s><s>10</s><s>15</s><s>20</s><s>25</s></array>
@@ -42,7 +42,7 @@
 					<string name="class">Modifiers::ConvertStat</string>
 					<string name="from">str</string>
 					<string name="to">thorns</string>
-					<vec2 name="mul">0.25 0.25</vec2>
+					<vec2 name="mul">0.33 0.33</vec2>
 					<bool name="add">true</bool>
 				</dict>
 			</array>
