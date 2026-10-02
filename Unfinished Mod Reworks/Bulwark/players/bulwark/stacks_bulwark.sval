@@ -51,8 +51,8 @@
 				<array name="effects">
 					<dict>
 						<string name="class">Explode</string>
-						<string name="fx">players/warrior/effects/tremor_strike.effect?radius=120</string>
-						<int name="radius">120</int>
+						<string name="fx">players/warrior/effects/tremor_strike.effect?radius=90</string>
+						<int name="radius">90</int>
 						<int name="min-radius">6</int>
 						<float name="dist-scaling">1000</float>
 						<array name="effects">
