@@ -57,7 +57,7 @@
 						<float name="dist-scaling">1000</float>
 						<array name="effects">
 							<dict><float name="enemy-dmg">1</float><bool name="only-actors">true</bool></dict>
-							<dict><string name="class">StatBasedDamage</string><string name="type">physical</string><string name="stat">thorns</string><float name="amount">1</float></dict>
+							<dict><string name="class">StatBasedDamage</string><string name="type">physical</string><string name="stat">thorns</string><float name="amount">0.5</float></dict>
 						</array>
 					</dict>
 				</array>

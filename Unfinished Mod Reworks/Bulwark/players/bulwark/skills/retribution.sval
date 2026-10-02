@@ -4,8 +4,8 @@
 	<string name="type-name">.skills.type.passive</string>
 	<string name="description">Gain thorns directly and from a portion of your maximum health. The Mending Rebuke upgrade restores a small amount of health when you are hurt.</string>
 	<array name="description-params">
-		<array><s>thorns-add</s><s>Thorns</s><s>15</s><s>30</s><s>45</s><s>60</s><s>75</s></array>
-		<array><s>thorns-health-mul</s><s>Thorns from max health</s><s>2%</s><s>4%</s><s>6%</s><s>8%</s><s>10%</s></array>
+		<array><s>thorns-add</s><s>Thorns</s><s>10</s><s>20</s><s>30</s><s>40</s><s>50</s></array>
+		<array><s>thorns-health-mul</s><s>Thorns from max health</s><s>1%</s><s>2%</s><s>3%</s><s>4%</s><s>5%</s></array>
 	</array>
 	<array name="icon"><string>players/bulwark/icons_skills.png</string><int>100</int><vec4>24 64 24 24</vec4></array>
 	<string name="id">bulwark_retribution</string>
@@ -14,7 +14,7 @@
 	<dict name="skill">
 		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
 		<string name="class">Skills::PassiveSkill</string>
-		<dict name="binds"><int name="thorns-add">15</int><float name="thorns-health-mul">0.02</float><float name="mending-rebuke-heal">0</float><float name="unyielding-dmg-taken">1</float><float name="vital-thorns-mul">0</float></dict>
+		<dict name="binds"><int name="thorns-add">10</int><float name="thorns-health-mul">0.01</float><float name="mending-rebuke-heal">0</float><float name="unyielding-dmg-taken">1</float><float name="vital-thorns-mul">0</float></dict>
 		<array name="modifiers">
 			<array>
 				<dict><string name="class">Modifiers::AddThorns</string><string name="thorns-bind">thorns-add</string></dict>
@@ -34,10 +34,10 @@
 		</array>
 	</dict>
 	<array name="upgrades">
-		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int><dict name="binds"><int name="thorns-add">30</int><float name="thorns-health-mul">0.04</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int><dict name="binds"><int name="thorns-add">45</int><float name="thorns-health-mul">0.06</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int><dict name="binds"><int name="thorns-add">60</int><float name="thorns-health-mul">0.08</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int><dict name="binds"><int name="thorns-add">75</int><float name="thorns-health-mul">0.10</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int><dict name="binds"><int name="thorns-add">20</int><float name="thorns-health-mul">0.02</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int><dict name="binds"><int name="thorns-add">30</int><float name="thorns-health-mul">0.03</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int><dict name="binds"><int name="thorns-add">40</int><float name="thorns-health-mul">0.04</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int><dict name="binds"><int name="thorns-add">50</int><float name="thorns-health-mul">0.05</float></dict></dict>
 	</array>
 	<array name="modifier-skills">
 		<dict>

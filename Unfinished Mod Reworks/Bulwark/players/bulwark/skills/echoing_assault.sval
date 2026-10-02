@@ -126,10 +126,10 @@
 	</dict>
 
 	<array name="upgrades">
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><dict name="binds"><vec2 name="attack-multiplier">0.85 0.85</vec2><float name="echo-percent">0.14</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><dict name="binds"><vec2 name="attack-multiplier">0.85 0.85</vec2><float name="echo-percent">0.18</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_4</int><dict name="binds"><vec2 name="attack-multiplier">0.85 0.85</vec2><float name="echo-percent">0.22</float></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><dict name="binds"><vec2 name="attack-multiplier">0.85 0.85</vec2><float name="echo-percent">0.26</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><dict name="binds"><float name="echo-percent">0.14</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><dict name="binds"><float name="echo-percent">0.18</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_4</int><dict name="binds"><float name="echo-percent">0.22</float></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><dict name="binds"><float name="echo-percent">0.26</float></dict></dict>
 	</array>
 
 	<array name="modifier-skills">
