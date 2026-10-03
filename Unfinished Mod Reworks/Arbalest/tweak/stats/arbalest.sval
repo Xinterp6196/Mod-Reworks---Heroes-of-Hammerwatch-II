@@ -1,0 +1,66 @@
+<loader order="-2">Stats::StatDef::LoadMultiple</loader>
+<array>
+%defblock MAX_LEVEL CLASS STAT
+<dict>
+		<string name="id">max-level-%%CLASS%%</string>
+		<int name="type">32</int>
+		<string name="category">adventuring</string>
+		
+		<array name="accomplishments">
+			<string>Arbalest's Discipline</string>
+			<string>Achieve Levels With Arbalest</string>
+			<dict>
+				<long name="value">5</long>
+				<int name="reward-%%STAT%%">3</int>
+			</dict>
+			<dict>
+				<long name="value">10</long>
+				<int name="reward-%%STAT%%">3</int>
+			</dict>
+			<dict>
+				<long name="value">20</long>
+				<int name="reward-%%STAT%%">3</int>
+				<string name="reward-achievement">%%CLASS%%_level20</string>
+			</dict>
+			<dict>
+				<long name="value">30</long>
+				<int name="reward-%%STAT%%">3</int>
+			</dict>
+			<dict>
+				<long name="value">40</long>
+				<int name="reward-%%STAT%%">3</int>
+				<string name="reward-achievement">%%CLASS%%_level40</string>
+			</dict>
+			<dict>
+				<long name="value">50</long>
+				<int name="reward-%%STAT%%">3</int>
+			</dict>
+			<dict>
+				<long name="value">60</long>
+				<int name="reward-%%STAT%%">3</int>
+				<string name="reward-achievement">%%CLASS%%_level60</string>
+			</dict>
+			<dict>
+				<long name="value">70</long>
+				<int name="reward-%%STAT%%">3</int>
+			</dict>
+			<dict>
+				<long name="value">80</long>
+				<int name="reward-%%STAT%%">3</int>
+			</dict>
+			<dict>
+				<long name="value">90</long>
+				<int name="reward-%%STAT%%">3</int>
+			</dict>
+			<dict>
+				<long name="value">100</long>
+				<int name="reward-%%STAT%%">3</int>
+			</dict>
+		</array>
+	</dict>
+
+%endblock
+
+%block MAX_LEVEL arbalest dex
+
+</array>

@@ -1,0 +1,41 @@
+<unit layer="0">
+	<behavior class="BombBehavior">
+		<string name="explode-sound">event:/sfx/player/classes/rogue/grenade/grenade_explode</string>
+		<int name="delay">150</int>
+		<array name="actions">
+			<dict>
+				<string name="class">Explode</string>
+				<int name="min-radius">50</int>
+				<int name="radius">200</int>
+				<float name="dist-scaling">1000</float>
+				<array name="effects">
+					<dict>
+						<string name="class">Damage</string>
+						<string name="physical-bind">grenade-dmg</string>
+					</dict>
+					<dict>
+						<string name="class">AddStacks</string>
+						<string name="buff">players/arbalest/stacks_footmen.sval:arbalest_com_bleed</string>
+						<string name="stacks-bind">bleed-stacks</string>
+						<float name="chance">1</float>
+						<bool name="target-self">false</bool>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<string name="class">SpawnEffect</string>
+				<string name="effect">effects/generic/explosions/bomb_explosion_2.effect?radius=200</string>
+			</dict>
+			<dict>
+				<string name="class">PlaySound</string>
+				<string name="sound">event:/sfx/player/classes/rogue/grenade/grenade_explode</string>
+			</dict>
+		</array>
+	</behavior>
+	<scenes>
+		<scene>
+			<scene pos="-3 4" src="special/shadow.unit:8" />
+			<effect src="players/rogue/projectiles/grenade.effect?scale=1&amp;hint=1&amp;hint_radius=200" />
+		</scene>
+	</scenes>
+</unit>

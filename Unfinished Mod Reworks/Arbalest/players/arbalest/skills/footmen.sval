@@ -1,0 +1,199 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Footmen</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">Gain Some Pikeman Allies</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>16</s><s>32</s><s>48</s><s>64</s><s>80</s></array>
+		<array><s>health</s><s>.skills.desc.params.health</s><s>800</s><s>1000</s><s>1300</s><s>1600</s><s>2000</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>20s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/arbalest/icons_skills.png</string>
+		<int>100</int><vec4>96 24 24 24</vec4>
+	</array>
+
+	<string name="id">arbalest_footmen</string>
+	<array name="tags"><s>passive</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PassiveSummonSkill</string>
+		
+		<dict name="binds">
+			<string name="guard-unit">players/arbalest/units/arbalest_pikeman_guard.unit</string>
+			<int name="pike-add-num">1</int>
+			<int name="pike-hp">800</int>
+			<int name="pike-dmg">16</int>
+			<int name="bleed-stacks">0</int>
+			<int name="echo-stacks">0</int>
+		</dict>
+
+		<string name="unit">players/arbalest/units/arbalest_pikeman_guard.unit</string>
+		<string name="effect">players/ranger/effects/spawn_wolf.effect</string>
+		<string name="sound">event:/sfx/player/classes/ranger/wolf/wolf_summon</string>
+		<int name="interval">20000</int>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ModifySummons</string>
+					<string name="unit">players/arbalest/units/arbalest_pikeman_guard.unit</string>
+					<string name="add-max-num-bind">pike-add-num</string>
+				</dict>
+			</array>
+		</array>
+	</dict>
+	
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<dict name="binds">
+				<int name="pike-hp">1000</int>
+				<int name="pike-dmg">32</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<dict name="binds">
+				<int name="pike-hp">1300</int>
+				<int name="pike-dmg">48</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<dict name="binds">
+				<int name="pike-hp">1600</int>
+				<int name="pike-dmg">64</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<dict name="binds">
+				<int name="pike-hp">2000</int>
+				<int name="pike-dmg">80</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Reinforcements, Now!</string>
+			<string name="description">Increase Pikeman Max Number</string>
+
+			<array name="description-params">
+				<array><s>pikeman</s><s>limit</s><s>3</s><s>4</s><s>5</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>96 24 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_footmen_reinforcements</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<int name="pike-add-num">2</int>
+				</dict>
+
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<int name="pike-add-num">3</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<int name="pike-add-num">4</int>
+					</dict>
+				</dict>
+
+			</array>
+		</dict>
+
+			
+		<dict>
+			<string name="name">Serrated Pikes</string>
+			<string name="description">Pikemen Apply Bleed</string>
+
+			<array name="description-params">
+				<array><s>Bleed</s><s>stacks</s><s>1</s><s>2</s><s>3</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>96 24 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_footmen_serrated_pikes</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<int name="bleed-stacks">1</int>
+				</dict>
+
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<int name="bleed-stacks">2</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<int name="bleed-stacks">3</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Echoing Steel</string>
+			<string name="description">Pikemen Apply Echo</string>
+
+			<array name="description-params">
+				<array><s>Echo</s><s>stacks</s><s>1</s><s>2</s><s>3</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>96 24 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_footmen_echoing_steel</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<int name="echo-stacks">1</int>
+				</dict>
+
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<int name="echo-stacks">2</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<int name="echo-stacks">3</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+	</array>
+</dict>

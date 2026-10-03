@@ -1,0 +1,27 @@
+<unit layer="-1">
+	<behavior class="DangerAreaBehaviorP">
+		<int name="freq">500</int>
+		<int name="ttl">2000</int>
+		<array name="effects">
+			<dict>
+				<float name="self-dmg">0</float>
+				<float name="team-dmg">0</float>
+				<float name="enemy-dmg">1</float>
+			</dict>
+			<dict>
+				<string name="class">Damage</string>
+				<int name="fire">12</int>
+				<bool name="true-strike">true</bool>
+			</dict>
+		</array>
+	</behavior>
+
+	<scenes>
+		<scene>
+			<collision static="false">
+				<circle radius="32" sensor="true" shoot-through="true" aim-through="true" />
+			</collision>
+			<effect src="effects/generic/areas/fire_area_ground_1.effect?radius=32" />
+		</scene>
+	</scenes>
+</unit>

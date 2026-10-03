@@ -1,0 +1,260 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Payload</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">.skills.rogue.mastery_3.spell_1.desc</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>300</s><s>360</s><s>450</s><s>540</s><s>660</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>30</s><s>30</s><s>40</s><s>40</s><s>50</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>3s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/arbalest/icons_skills.png</string>
+		<int>100</int><vec4>96 0 24 24</vec4>
+	</array>
+
+	<string name="id">arbalest_payload</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::ShootProjectileTarget</string>
+		<string name="anim">cast</string>
+		<int name="anim-length">600</int>
+		<string name="start-snd"></string>
+		<string name="snd">event:/sfx/player/classes/rogue/grenade/grenade_throw</string>
+		
+		<int name="cooldown">3000</int>
+		<int name="castpoint">150</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0.8</float>
+		<ivec2 name="move-speed">0 200</ivec2>
+		<bool name="blocking">false</bool>
+
+		<int name="mana-cost">30</int>
+		<int name="radius">48</int>
+		<int name="range">360</int>
+		<int name="range-min">16</int>
+		<bool name="raycast-to-target">false</bool>
+		<int name="dist">8</int>
+
+		<dict name="binds">
+			<string name="proj-unit">players/arbalest/units/payload_projectile.unit</string>
+			<string name="proj-explode-unit">players/arbalest/units/payload_explosion.unit</string>
+			<float name="grenade-dmg">300</float>
+		</dict>
+		<string name="projectile-bind">proj-unit</string>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<int name="mana-cost">30</int>
+			<dict name="binds">
+				<float name="grenade-dmg">360</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<int name="mana-cost">40</int>
+			<dict name="binds">
+				<float name="grenade-dmg">450</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<int name="mana-cost">40</int>
+			<dict name="binds">
+				<float name="grenade-dmg">540</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<int name="mana-cost">50</int>
+			<dict name="binds">
+				<float name="grenade-dmg">660</float>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Superheated Casing</string>
+			<string name="description">Payload creates a fire zone for 4 seconds, dealing 10/15/20% of its damage every 0.5 seconds.</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>10%</s><s>15%</s><s>20%</s></array>
+				<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>4s</s></array>
+				<array><s>tick-rate</s><b>t</b><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>96 0 24 24</vec4>
+			</array>
+
+			<array name="tags"><s>spell</s><s>physical</s><s>fire</s></array>
+			<string name="id">arbalest_payload_incendiary</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="proj-explode-unit">players/arbalest/units/payload_explosion_superheated.unit</string>
+					<float name="area-dmg-mul">0.1</float>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="area-dmg-mul">0.15</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="area-dmg-mul">0.2</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">Arc Casing</string>
+			<string name="description">Payload deals 20/30/40% additional lightning damage and chains 2/4/6 times.</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>20%</s><s>30%</s><s>40%</s></array>
+				<array><s>chains</s><s>.skills.desc.params.chains</s><s>2</s><s>4</s><s>6</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>96 0 24 24</vec4>
+			</array>
+
+			<array name="tags"><s>spell</s><s>physical</s><s>lightning</s></array>
+			<string name="id">arbalest_payload_shock</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="proj-explode-unit">players/arbalest/units/payload_explosion_arc.unit</string>
+					<float name="lightning-dmg-mul">0.2</float>
+					<int name="shock-chains">2</int>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="lightning-dmg-mul">0.3</float>
+						<int name="shock-chains">4</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="lightning-dmg-mul">0.4</float>
+						<int name="shock-chains">6</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.rogue.mastery_3.spell_1.up3.name</string>
+			<string name="description">.skills.rogue.mastery_3.spell_1.up3.desc</string>
+
+			<array name="description-params">
+				<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown.effect</s><s>2s</s><s>0.5s</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>96 0 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_payload_dash</string>
+			<string name="quality">rare</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<int name="grenade-dash-cd">2000</int>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<dict>
+							<string name="class">Modifiers::TriggerEffect</string>
+							<string name="trigger">dash</string>
+							<bool name="target-self">true</bool>
+							<float name="chance">1</float>
+							<string name="timeout-bind">grenade-dash-cd</string>
+
+							<array name="effects">
+								<dict>
+									<string name="class">DebugLog</string>
+									<string name="text">grenade_dash</string>
+								</dict>
+								<dict>
+									<string name="class">PerformFloatingAction</string>
+									<string name="floating-action">players/rogue/actions_rogue.sval:grenade_dash</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<int name="grenade-dash-cd">500</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Shrapnel Casing</string>
+			<string name="description">Payload applies 1/2/3 bleeding stacks to enemies hit.</string>
+			<array name="description-params">
+				<array><s>stacks</s><s>Bleeding stacks</s><s>1</s><s>2</s><s>3</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>96 0 24 24</vec4>
+			</array>
+			<array name="tags"><s>spell</s><s>physical</s></array>
+			<string name="id">arbalest_payload_shrapnel</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+			<dict name="skill">
+				<dict name="binds">
+					<string name="proj-explode-unit">players/arbalest/units/payload_explosion_shrapnel.unit</string>
+					<int name="bleed-stacks">1</int>
+				</dict>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds"><int name="bleed-stacks">2</int></dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds"><int name="bleed-stacks">3</int></dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

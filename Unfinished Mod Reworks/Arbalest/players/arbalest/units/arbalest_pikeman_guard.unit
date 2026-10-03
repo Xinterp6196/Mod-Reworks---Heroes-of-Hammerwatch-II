@@ -1,0 +1,400 @@
+<unit netsync="position">
+	<behavior class="PlayerOwnedActor">
+		<string name="team">player</string>
+		<string name="hp-bind">pike-hp</string>
+		<int name="armor">50</int>
+		<int name="res-fire">20</int>
+		<int name="res-ice">20</int>
+		<int name="res-lightning">20</int>
+		<int name="res-poison">20</int>
+		<float name="hp-regen-time">0.75</float>
+		<float name="ngp-scale">0.5</float>
+
+		<bool name="must-see-target">true</bool>
+		<int name="aggro-range">300</int>
+		<int name="max-range">500</int>
+		<int name="aggro-leash">350</int>
+		<int name="teleport-leash">350</int>
+
+		<array name="tags">
+			<string>summon</string>
+			<string>crusader</string>
+		</array>
+
+		<dict name="effect-params">
+		</dict>
+
+		<array name="colorize">
+			<i>0</i><a><s>#4f2205ff</s><s>#e9925cff</s><s>#fec79dff</s></a> <!-- skin -->
+			<i>1</i><a><s>#532d04ff</s><s>#C98D18FF</s><s>#FFEC86FF</s></a> <!-- helmet -->
+			<i>2</i><a><s>#A01803</s><s>#FA2605</s><s>#FB4D32</s></a> <!-- shoulder piece -->
+			<i>3</i><a><s>#270f00ff</s><s>#442606ff</s><s>#b27f42ff</s></a> <!-- overshirt -->
+			<i>4</i><a><s>#532d04ff</s><s>#C98D18FF</s><s>#FFEC86FF</s></a> <!-- undershirt -->
+			<i>5</i><a><s>#0e0400ff</s><s>#411f0cff</s><s>#80593cff</s></a> <!-- boots -->
+		</array>
+
+		<dict name="movement">
+			<string name="class">MeleeFollowerMovement</string>
+			<string name="anim-idle">idle 8</string>
+			<string name="anim-walk">walk 8</string>
+
+			<float name="speed">4.5</float>
+			<float name="run-back-speed">6.0</float>
+			<int name="run-back-distance">180</int>
+			<int name="dist">30</int>
+			<float name="roaming">0.5</float>
+			<int name="roaming-distance">60</int>
+		</dict>
+
+		<array name="skills">
+			<dict>
+				<string name="class">CompositeActorSkill</string>
+				<string name="name">skill_guard_melee</string>
+				<string name="anim">guard_melee 8</string>
+				<string name="snd">event:/sfx/player/mercenary/spear_thrust</string>
+
+				<ivec2 name="cooldown-start">50 150</ivec2>
+				<int name="cooldown">250</int>
+				<int name="castpoint">300</int>
+				<ivec2 name="update-aim">0 200</ivec2>
+				<int name="range">40</int>
+				<bool name="use-body-range">true</bool>
+				<bool name="is-attack">true</bool>
+
+				<array name="actions">
+					<dict>
+						<string name="class">MeleeSwing</string>
+						<int name="dist">44</int>
+						<int name="rays">1</int>
+						<int name="ray-num">3</int>
+						<int name="ray-width">12</int>
+
+						<array name="effects">
+							<dict>
+								<string name="class">Damage</string>
+								<string name="physical-bind">pike-dmg</string>
+								<bool name="melee">true</bool>
+							</dict>
+							<dict>
+								<string name="class">PlaySound</string>
+								<string name="sound">event:/sfx/player/mercenary/spear_thrust_hit</string>
+							</dict>
+							<dict>
+								<string name="class">SpawnEffect</string>
+								<string name="effect">effects/generic/impacts/stab_impact_1.effect</string>
+							</dict>
+						</array>
+					</dict>
+
+					<dict>
+						<string name="class">SpawnEffect</string>
+						<string name="effect">effects/generic/attacks/thrust_attack_1.effect</string>
+						<bool name="clone-owner-params">true</bool>
+					</dict>
+				</array>
+			</dict>
+
+			<dict>
+				<string name="class">CompositeActorSkill</string>
+				<string name="name">skill_melee</string>
+				<string name="anim">melee_lunge 8</string>
+				<string name="start-snd">event:/sfx/actors/humans/human_melee_attack</string>
+				<string name="snd">event:/SFX/Effects/Attacks/swings/blade/swing_spear</string>
+
+				<ivec2 name="cooldown-start">50 150</ivec2>
+				<ivec2 name="cooldown">2000 2500</ivec2>
+				<int name="castpoint">550</int>
+				<ivec2 name="update-aim">0 500</ivec2>
+
+				<int name="range">55</int>
+				<int name="min-range">40</int>
+				<bool name="is-attack">true</bool>
+
+				<array name="movements">
+					<i2>450 700</i2><v2>0 4</v2><b>t</b>
+					<i2>700 850</i2><v2>0 1</v2><b>t</b>
+				</array>
+
+				<array name="actions">
+					<dict>
+						<string name="class">MeleeSwing</string>
+						<int name="dist">44</int>
+						<int name="rays">3</int>
+						<int name="ray-num">3</int>
+						<int name="ray-width">12</int>
+						<float name="angledelta">0</float>
+						<int name="interval">50</int>
+
+						<array name="effects">
+							<dict>
+								<string name="class">Damage</string>
+								<string name="physical-bind">pike-dmg</string>
+								<bool name="melee">true</bool>
+							</dict>
+							<dict>
+								<string name="class">PlaySound</string>
+								<string name="sound">event:/SFX/Effects/Attacks/hits/stab/stab_3</string>
+							</dict>
+							<dict>
+								<string name="class">SpawnEffect</string>
+								<string name="effect">effects/generic/impacts/stab_impact_1.effect</string>
+							</dict>
+						</array>
+					</dict>
+
+					<dict>
+						<string name="class">SpawnEffect</string>
+						<string name="effect">effects/generic/attacks/thrust_attack_1.effect</string>
+						<bool name="clone-owner-params">true</bool>
+						<bool name="attach-to-owner">true</bool>
+					</dict>
+				</array>
+			</dict>
+			
+			
+
+			
+
+			
+
+		</array>
+	</behavior>
+
+	<scenes start="idle-0 idle-1 idle-2 idle-3 idle-4 idle-5 idle-6 idle-7">
+		<scene name="shared">
+			<collision static="false">
+				<circle radius="4" offset="0 0" aim-through="true" charge-through="true" ignore-player="true" />
+				<circle radius="8" offset="0 -7" sensor="true" shoot-through="false" aim-through="true" ignore-player="true" />
+			</collision>
+			<scene src="special/shadow.unit:14"/>
+			<scene src="special/minimap.unit:npc_normal"/>
+		</scene>
+		
+		<scene name="idle-0" editor-bounds="-9 -24 18 32">
+			<scene src="shared" />
+			<sprite origin="24 30" looping="true" texture="players/shared/units/mercenary_pikeman.tif" material="system/default.mats:npc">		
+				<frame time="100">0 0 48 48</frame>
+			</sprite>
+		</scene>
+		<scene name="idle-1" editor-bounds="-9 -24 18 32">
+			<scene src="shared" />
+			<sprite origin="24 30" looping="true" texture="players/shared/units/mercenary_pikeman.tif" material="system/default.mats:npc">		
+				<frame time="100">48 0 48 48</frame>
+			</sprite>
+		</scene>
+		<scene name="idle-2" editor-bounds="-9 -24 18 32">
+			<scene src="shared" />
+			<sprite origin="24 30" looping="true" texture="players/shared/units/mercenary_pikeman.tif" material="system/default.mats:npc">		
+				<frame time="100">96 0 48 48</frame>
+			</sprite>
+		</scene>
+		<scene name="idle-3" editor-bounds="-9 -24 18 32">
+			<scene src="shared" />
+			<sprite origin="24 30" looping="true" texture="players/shared/units/mercenary_pikeman.tif" material="system/default.mats:npc">		
+				<frame time="100">144 0 48 48</frame>
+			</sprite>
+		</scene>
+		<scene name="idle-4" editor-bounds="-9 -24 18 32">
+			<scene src="shared" />
+			<sprite origin="24 30" looping="true" texture="players/shared/units/mercenary_pikeman.tif" material="system/default.mats:npc">		
+				<frame time="100">192 0 48 48</frame>
+			</sprite>
+		</scene>
+		<scene name="idle-5" editor-bounds="-9 -24 18 32">
+			<scene src="shared" />
+			<sprite origin="24 30" looping="true" texture="players/shared/units/mercenary_pikeman.tif" material="system/default.mats:npc">		
+				<frame time="100">240 0 48 48</frame>
+			</sprite>
+		</scene>
+		<scene name="idle-6" editor-bounds="-9 -24 18 32">
+			<scene src="shared" />
+			<sprite origin="24 30" looping="true" texture="players/shared/units/mercenary_pikeman.tif" material="system/default.mats:npc">		
+				<frame time="100">288 0 48 48</frame>
+			</sprite>
+		</scene>
+		<scene name="idle-7" editor-bounds="-9 -24 18 32">
+			<scene src="shared" />
+			<sprite origin="24 30" looping="true" texture="players/shared/units/mercenary_pikeman.tif" material="system/default.mats:npc">		
+				<frame time="100">336 0 48 48</frame>
+			</sprite>
+		</scene>
+
+%defblock AnimWalk XCOORD
+<scene src="shared" />
+<sprite origin="24 30" looping="true" texture="players/shared/units/mercenary_pikeman_move.tif" material="system/default.mats:npc">		
+	<frame time="80">%%XCOORD%% 0 48 48</frame>
+	<frame time="80">%%XCOORD%% 48 48 48</frame>
+	<frame time="80">%%XCOORD%% 96 48 48</frame>
+	<frame time="80">%%XCOORD%% 144 48 48</frame>
+	<frame time="80">%%XCOORD%% 192 48 48</frame>
+	<frame time="80">%%XCOORD%% 240 48 48</frame>
+	<frame time="80">%%XCOORD%% 288 48 48</frame>
+	<frame time="80">%%XCOORD%% 336 48 48</frame>
+</sprite>
+%endblock		
+		<scene name="walk-0">
+			%block AnimWalk 0
+		</scene>
+		<scene name="walk-1">
+			%block AnimWalk 48
+		</scene>
+		<scene name="walk-2">
+			%block AnimWalk 96
+		</scene>
+		<scene name="walk-3">
+			%block AnimWalk 144
+		</scene>
+		<scene name="walk-4">
+			%block AnimWalk 192
+		</scene>
+		<scene name="walk-5">
+			%block AnimWalk 240
+		</scene>
+		<scene name="walk-6">
+			%block AnimWalk 288
+		</scene>
+		<scene name="walk-7">
+			%block AnimWalk 336
+		</scene>
+		
+
+%defblock AnimGuard XCOORD
+<scene src="shared" />
+<sprite origin="24 30" loopback="100" texture="players/shared/units/mercenary_pikeman_attack.tif" material="system/default.mats:npc">		
+	<frame time="100">%%XCOORD%% 0 48 48</frame>
+	<frame time="100">%%XCOORD%% 48 48 48</frame>
+</sprite>
+%endblock
+		<scene name="guard-0">
+			%block AnimGuard 0
+		</scene>
+		<scene name="guard-1">
+			%block AnimGuard 48
+		</scene>
+		<scene name="guard-2">
+			%block AnimGuard 96
+		</scene>
+		<scene name="guard-3">
+			%block AnimGuard 144
+		</scene>
+		<scene name="guard-4">
+			%block AnimGuard 192
+		</scene>
+		<scene name="guard-5">
+			%block AnimGuard 240
+		</scene>
+		<scene name="guard-6">
+			%block AnimGuard 288
+		</scene>
+		<scene name="guard-7">
+			%block AnimGuard 336
+		</scene>
+
+
+%defblock AnimGuardWalk XCOORD
+<scene src="shared" />
+<sprite origin="24 30" texture="players/shared/units/mercenary_pikeman_guard_move.tif" material="system/default.mats:npc">		
+	<frame time="150">%%XCOORD%% 0 48 48</frame>
+	<frame time="250">%%XCOORD%% 48 48 48</frame>
+	<frame time="150">%%XCOORD%% 96 48 48</frame>
+	<frame time="250">%%XCOORD%% 144 48 48</frame>
+</sprite>
+%endblock
+		<scene name="guard_walk-0">
+			%block AnimGuardWalk 0
+		</scene>
+		<scene name="guard_walk-1">
+			%block AnimGuardWalk 48
+		</scene>
+		<scene name="guard_walk-2">
+			%block AnimGuardWalk 96
+		</scene>
+		<scene name="guard_walk-3">
+			%block AnimGuardWalk 144
+		</scene>
+		<scene name="guard_walk-4">
+			%block AnimGuardWalk 192
+		</scene>
+		<scene name="guard_walk-5">
+			%block AnimGuardWalk 240
+		</scene>
+		<scene name="guard_walk-6">
+			%block AnimGuardWalk 288
+		</scene>
+		<scene name="guard_walk-7">
+			%block AnimGuardWalk 336
+		</scene>
+		
+%defblock AnimMeleeLunge XCOORD
+<scene src="shared" />
+<sprite origin="24 30" looping="false" texture="players/shared/units/mercenary_pikeman_attack.tif" material="system/default.mats:npc">		
+	<frame time="100">%%XCOORD%% 0 48 48</frame>
+	<frame time="100">%%XCOORD%% 48 48 48</frame>
+	<frame time="250">%%XCOORD%% 96 48 48</frame>
+	<frame time="400">%%XCOORD%% 144 48 48</frame>
+	<frame time="50">%%XCOORD%% 192 48 48</frame>
+	<frame time="200">%%XCOORD%% 240 48 48</frame>
+	<frame time="100">%%XCOORD%% 288 48 48</frame>
+</sprite>
+%endblock
+		<scene name="melee_lunge-0">
+			%block AnimMeleeLunge 0
+		</scene>
+		<scene name="melee_lunge-1">
+			%block AnimMeleeLunge 48
+		</scene>
+		<scene name="melee_lunge-2">
+			%block AnimMeleeLunge 96
+		</scene>
+		<scene name="melee_lunge-3">
+			%block AnimMeleeLunge 144
+		</scene>
+		<scene name="melee_lunge-4">
+			%block AnimMeleeLunge 192
+		</scene>
+		<scene name="melee_lunge-5">
+			%block AnimMeleeLunge 240
+		</scene>
+		<scene name="melee_lunge-6">
+			%block AnimMeleeLunge 288
+		</scene>
+		<scene name="melee_lunge-7">
+			%block AnimMeleeLunge 336
+		</scene>
+
+%defblock AnimGuardMelee XCOORD
+<scene src="shared" />
+<sprite origin="24 30" looping="false" texture="players/shared/units/mercenary_pikeman_attack.tif" material="system/default.mats:npc">
+	<frame time="100">%%XCOORD%% 48 48 48</frame>
+	<frame time="200">%%XCOORD%% 96 48 48</frame>
+	<frame time="50">%%XCOORD%% 144 48 48</frame>
+	<frame time="50">%%XCOORD%% 192 48 48</frame>
+	<frame time="150">%%XCOORD%% 240 48 48</frame>
+</sprite>
+%endblock
+		<scene name="guard_melee-0">
+			%block AnimGuardMelee 0
+		</scene>
+		<scene name="guard_melee-1">
+			%block AnimGuardMelee 48
+		</scene>
+		<scene name="guard_melee-2">
+			%block AnimGuardMelee 96
+		</scene>
+		<scene name="guard_melee-3">
+			%block AnimGuardMelee 144
+		</scene>
+		<scene name="guard_melee-4">
+			%block AnimGuardMelee 192
+		</scene>
+		<scene name="guard_melee-5">
+			%block AnimGuardMelee 240
+		</scene>
+		<scene name="guard_melee-6">
+			%block AnimGuardMelee 288
+		</scene>
+		<scene name="guard_melee-7">
+			%block AnimGuardMelee 336
+		</scene>
+	</scenes>
+</unit>

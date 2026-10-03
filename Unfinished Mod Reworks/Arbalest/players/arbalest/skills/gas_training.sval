@@ -1,0 +1,124 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Gas Training</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">Gain additional Spell Power equal to 25% of your Dexterity.</string>
+	<array name="description-params">
+		<array><s>spellpower</s><s>.skills.desc.params.spellpower</s><s>25% of Dexterity</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/arbalest/icons_skills.png</string>
+		<int>100</int><vec4>48 24 24 24</vec4>
+	</array>
+
+	<string name="id">arbalest_gas_training</string>
+	<array name="tags"><s>passive</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+		<dict name="binds"><float name="dex-spellpwr">0.25</float></dict>
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ConvertStat</string>
+					<bool name="add">true</bool>
+					<string name="mul-bind">dex-spellpwr</string>
+					<string name="from">dex</string>
+					<string name="to">spellpwr</string>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Advanced Filtration</string>
+			<string name="description">Convert 50/75/100% of your Dexterity to Spell Power.</string>
+			<array name="description-params">
+				<array><s>spell-power</s><s>Dexterity converted to Spell Power</s><s>50%</s><s>75%</s><s>100%</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>48 24 24 24</vec4>
+			</array>
+			<string name="id">arbalest_gas_training_advanced_filtration</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<dict name="binds"><float name="dex-spellpwr">0.5</float></dict>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds"><float name="dex-spellpwr">0.75</float></dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds"><float name="dex-spellpwr">1</float></dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Poison Payload</string>
+			<string name="description">Increase poison damage by 10/20/30%.</string>
+			<array name="description-params">
+				<array><s>damage</s><s>Poison damage</s><s>10%</s><s>20%</s><s>30%</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>48 24 24 24</vec4>
+			</array>
+			<string name="id">arbalest_gas_training_poison_payload</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<dict name="binds"><float name="poison-damage">0.1</float></dict>
+				<array name="modifiers">
+					<array><null /></array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::DamageMulAdd</string>
+							<string name="poison-bind">poison-damage</string>
+						</dict>
+					</array>
+				</array>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds"><float name="poison-damage">0.2</float></dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds"><float name="poison-damage">0.3</float></dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Toxic Hardening</string>
+			<string name="description">Gain 25 poison resistance and 10% poison penetration.</string>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>48 24 24 24</vec4>
+			</array>
+			<string name="id">arbalest_gas_training_toxic_hardening</string>
+			<string name="quality">rare</string>
+			<dict name="skill">
+				<array name="modifiers">
+					<array><null /></array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::ArmorAdd</string>
+							<int name="poison">25</int>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::ArmorPenetration</string>
+							<float name="poison-penetration">0.1</float>
+						</dict>
+					</array>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>

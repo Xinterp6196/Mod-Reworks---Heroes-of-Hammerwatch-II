@@ -1,0 +1,14 @@
+<loader>HeroTitle::LoadMultiple</loader>
+<array>
+	<dict>
+		<string name="id">title_arbalest</string>
+		<string name="name">Arbalest</string>
+		<string name="description">Grants %num% move speed, %num-per% per level.</string>
+		<float name="desc-per-level">0.25</float>
+
+		<dict name="modifier">
+			<string name="class">Modifiers::SpeedAdd</string>
+			<vec2 name="move-speed">0 0.25</vec2>
+		</dict>
+	</dict>
+</array>

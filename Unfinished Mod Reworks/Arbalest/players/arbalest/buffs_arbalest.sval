@@ -1,0 +1,31 @@
+<svals>
+%defblock Hithard LVL AMOUNT
+	<dict name="arbalest_morale_%%LVL%%">
+		<int name="duration">12000</int>
+		<bool name="debuff">false</bool>
+		<string name="fx">effects/generic/actor/actor_drum_buff.effect</string>
+		<array name="modifiers">
+			<dict>
+				<string name="class">Modifiers::ConvertStat</string>
+				<bool name="add">true</bool>
+				<float name="mul">%%AMOUNT%%</float>
+				<string name="from">attackpwr</string>
+				<string name="to">attackpwr</string>
+			</dict>
+			<dict>
+				<string name="class">Modifiers::ConvertStat</string>
+				<bool name="add">true</bool>
+				<float name="mul">%%AMOUNT%%</float>
+				<string name="from">spellpwr</string>
+				<string name="to">spellpwr</string>
+			</dict>
+		</array>
+	</dict>
+%endblock
+
+%block Hithard 1 0.04
+%block Hithard 2 0.08
+%block Hithard 3 0.12
+%block Hithard 4 0.16
+%block Hithard 5 0.2
+</svals>

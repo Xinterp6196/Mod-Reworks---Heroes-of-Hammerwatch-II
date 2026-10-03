@@ -1,0 +1,314 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Loaded for Bear</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">.skills.ranger.spell_1.desc</string>
+	<array name="shown-icons"><s>marked</s></array>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>40</s><s>50</s><s>60</s><s>70</s><s>80</s></array>
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>+10%</s><s>+10%</s><s>+15%</s><s>+15%</s><s>+20%</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>20</s><s>20</s><s>25</s><s>25</s><s>30</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>2s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/arbalest/icons_skills.png</string>
+		<int>100</int><vec4>0 0 24 24</vec4>
+	</array>
+
+	<string name="id">arbalest_loaded_for_bear</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>physical</s><s>bow</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::ShootProjectileTarget</string>
+		<string name="anim">attack</string>
+		<int name="anim-length">400</int>
+		<string name="snd">event:/sfx/player/classes/ranger/marked_shot/marked_shot_cast</string>
+		
+		<int name="cooldown">2000</int>
+		<int name="castpoint">100</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0</float>
+		<ivec2 name="move-speed">0 100</ivec2>
+		<bool name="blocking">false</bool>
+		<bool name="repeating">false</bool>
+
+		<int name="radius">48</int>
+		<int name="range">180</int>
+		<int name="range-min">16</int>
+		<bool name="raycast-to-target">false</bool>
+		<string name="projectile">players/ranger/projectiles/marked_shot_arrow.unit</string>
+		<int name="dist">10</int>
+
+		<int name="mana-cost">20</int>
+
+		<dict name="binds">
+			<int name="proj-dmg">40</int>
+			<float name="dmg-mul">1.1</float>
+		</dict>
+		
+		<array name="modifiers">
+			<array>
+				<dict>
+					<array name="conditional">
+						<s>buff</s><s>has tag</s><s>marked</s>
+					</array>
+					
+					<string name="class">Modifiers::Damage</string>
+					<string name="attack-mul-bind">dmg-mul</string>
+					<string name="spell-mul-bind">dmg-mul</string>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
+			<int name="mana-cost">20</int>
+			<dict name="binds">
+				<int name="proj-dmg">50</int>
+				<float name="dmg-mul">1.1</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
+			<int name="mana-cost">25</int>
+			<dict name="binds">
+				<int name="proj-dmg">60</int>
+				<float name="dmg-mul">1.15</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
+			<int name="mana-cost">25</int>
+			<dict name="binds">
+				<int name="proj-dmg">70</int>
+				<float name="dmg-mul">1.15</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
+			<int name="mana-cost">30</int>
+			<dict name="binds">
+				<int name="proj-dmg">80</int>
+				<float name="dmg-mul">1.2</float>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Heavy Hitters</string>
+			<string name="description">Loaded for Bear deals 2/4/6% increased damage.</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>2%</s><s>4%</s><s>6%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>0 0 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_loaded_for_bear_pursuit</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="heavy-dmg">0.02</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<dict>
+							<string name="class">Modifiers::BaseSkillModifier</string>
+							<string name="skill-id">arbalest_loaded_for_bear</string>
+							<string name="damage-mul-bind">heavy-dmg</string>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="heavy-dmg">0.04</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="heavy-dmg">0.06</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">Thrill of the Hunt</string>
+			<string name="description">Killing a marked enemy has a 40% chance to restore 3/4/5% of your maximum health and mana.</string>
+			<array name="shown-icons"><s>marked</s></array>
+
+			<array name="description-params">
+				<array><s>regain</s><s>.skills.desc.params.restore.health.max</s><s>3%</s><s>4%</s><s>5%</s></array>
+				<array><s>regain</s><s>.skills.desc.params.restore.mana.max</s><s>3%</s><s>4%</s><s>5%</s></array>
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>40%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>0 0 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_loaded_for_bear_kill</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="kill-mana-amount">0.03</float>
+					<float name="kill-heal-amount">0.03</float>
+					<float name="heal-chance">0.4</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+		 			<array>
+						<dict>
+							<array name="conditional">
+								<s>buff</s><s>has tag</s><s>marked</s>
+							</array>
+							
+							<string name="class">Modifiers::TriggerEffect</string>
+							<string name="trigger">kill</string>
+							<bool name="target-self">true</bool>
+							<!-- <float name="chance">1</float> -->
+							<string name="chance-bind">heal-chance</string>
+							<int name="timeout">0</int>
+
+							<array name="effects">
+								<dict>
+									<string name="class">DebugLog</string>
+									<string name="text">test_mark_kill</string>
+								</dict>
+								<dict>
+									<bool name="target-self">true</bool>
+								</dict>
+								<dict>
+									<string name="class">GivePercentageMana</string>
+									<string name="mana-bind">kill-mana-amount</string>
+									<bool name="curr-mana">false</bool>
+								</dict>
+								<dict>
+									<string name="class">HPBasedHeal</string>
+									<string name="heal-bind">kill-heal-amount</string>
+									<bool name="curr-hp">false</bool>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="kill-mana-amount">0.04</float>
+						<float name="kill-heal-amount">0.04</float>
+						<!-- <float name="heal-chance">0.10</float> -->
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="kill-mana-amount">0.05</float>
+						<float name="kill-heal-amount">0.05</float>
+						<!-- <float name="heal-chance">0.15</float> -->
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">Big Game Hunter</string>
+			<string name="description">Loaded for Bear deals 20/40/60% increased damage to marked elite and boss enemies.</string>
+			<array name="shown-icons"><s>marked</s><s>elites</s></array>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>20%</s><s>40%</s><s>60%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>0 0 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_loaded_for_bear_big_game</string>
+			<!-- <string name="quality">uncommon</string> -->
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="big-dmg-mul">1.2</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+		 			<array>
+		 				<null />
+					</array>
+					<array>
+						<dict>
+							<array name="conditionals">
+								<array>
+									<s>buff</s><s>has tag</s><s>marked</s>
+									<s>tag</s><s>has</s><s>boss</s>
+								</array>
+								<array>
+									<s>buff</s><s>has tag</s><s>marked</s>
+									<s>tag</s><s>has</s><s>elite</s>
+								</array>
+							</array>
+							
+							<string name="class">Modifiers::Damage</string>
+							<string name="attack-mul-bind">big-dmg-mul</string>
+							<string name="spell-mul-bind">big-dmg-mul</string>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="big-dmg-mul">1.4</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="big-dmg-mul">1.6</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<!-- true strike against marked -->
+
+	</array>
+</dict>

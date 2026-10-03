@@ -1,0 +1,77 @@
+<unit layer="0">
+	<behavior class="BombBehavior">
+		<string name="explode-sound">event:/sfx/player/classes/rogue/grenade/grenade_explode</string>
+		<int name="delay">150</int>
+		<array name="actions">
+			<dict>
+				<string name="class">Explode</string>
+				<int name="min-radius">50</int>
+				<int name="radius">200</int>
+				<float name="dist-scaling">1000</float>
+				<array name="effects">
+					<dict>
+						<string name="class">Damage</string>
+						<string name="physical-bind">grenade-dmg</string>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<string name="class">SpawnEffect</string>
+				<string name="effect">effects/generic/explosions/bomb_explosion_2.effect?radius=200&amp;lightning=1</string>
+			</dict>
+			<dict>
+				<string name="class">PlaySound</string>
+				<string name="sound">event:/sfx/player/classes/rogue/grenade/grenade_shock</string>
+			</dict>
+			<dict>
+				<string name="class">ChainAction</string>
+				<array name="links">
+					<dict>
+						<string name="class">ChainActionAreaCircleLink</string>
+						<int name="radius">200</int>
+						<int name="repeat">0</int>
+						<int name="max-hits">999</int>
+						<bool name="shoot-from-owner">false</bool>
+						<bool name="only-hit-targets-once">true</bool>
+						<string name="shoot-fx">effects/generic/raycast/lightning_beam_2.effect</string>
+						<string name="hit-fx">effects/generic/impacts/lightning_impact_2.effect</string>
+						<array name="effects">
+							<dict><string name="intensity-mul-bind">lightning-dmg-mul</string></dict>
+							<dict>
+								<string name="class">Damage</string>
+								<string name="lightning-bind">grenade-dmg</string>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<string name="class">ChainActionAreaCircleLink</string>
+						<int name="radius">200</int>
+						<string name="repeat-bind">shock-chains</string>
+						<int name="max-hits">1</int>
+						<bool name="shoot-from-owner">false</bool>
+						<bool name="only-hit-targets-once">true</bool>
+						<string name="shoot-fx">effects/generic/raycast/lightning_beam_2.effect</string>
+						<string name="hit-fx">effects/generic/impacts/lightning_impact_2.effect</string>
+						<array name="effects">
+							<dict><string name="intensity-mul-bind">lightning-dmg-mul</string></dict>
+							<dict>
+								<string name="class">Damage</string>
+								<string name="lightning-bind">grenade-dmg</string>
+							</dict>
+							<dict>
+								<string name="class">PlaySound</string>
+								<string name="sound">event:/sfx/player/classes/rogue/grenade/grenade_shock_hit</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
+			</dict>
+		</array>
+	</behavior>
+	<scenes>
+		<scene>
+			<scene pos="-3 4" src="special/shadow.unit:8" />
+			<effect src="players/rogue/projectiles/grenade.effect?scale=1&amp;hint=1&amp;hint_radius=200" />
+		</scene>
+	</scenes>
+</unit>

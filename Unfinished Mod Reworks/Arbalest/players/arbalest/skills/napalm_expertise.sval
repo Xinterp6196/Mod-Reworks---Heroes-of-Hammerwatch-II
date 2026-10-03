@@ -1,0 +1,198 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Napalm Expertise</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">Fire damage is increased by 5%. Fire hits have a 10% chance to weaken enemies.</string>
+	<array name="description-params">
+		<array><s>fire-damage</s><s>Fire damage</s><s>+5%</s></array>
+		<array><s>chance</s><s>.skills.desc.params.chance</s><s>10%</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/arbalest/icons_skills.png</string>
+		<int>100</int><vec4>0 24 24 24</vec4>
+	</array>
+
+	<string name="id">arbalest_napalm_expertise</string>
+	<array name="tags"><s>passive</s><s>fire</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+		<dict name="binds">
+			<float name="fire-dmg">0.05</float>
+			<float name="weaken-chance">0.1</float>
+			<string name="weakness-buff">tweak/buffs/status_effects.sval:weakness</string>
+		</dict>
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::DamageMulAdd</string>
+					<string name="fire-bind">fire-dmg</string>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<string name="trigger">hit</string>
+					<array name="skill-tags"><s>fire</s></array>
+					<bool name="target-self">false</bool>
+					<string name="chance-bind">weaken-chance</string>
+					<int name="timeout">0</int>
+					<array name="effects">
+						<dict><bool name="only-actors">true</bool></dict>
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff-bind">weakness-buff</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<string name="trigger">spellhit</string>
+					<array name="skill-tags"><s>fire</s></array>
+					<bool name="target-self">false</bool>
+					<string name="chance-bind">weaken-chance</string>
+					<int name="timeout">0</int>
+					<array name="effects">
+						<dict><bool name="only-actors">true</bool></dict>
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff-bind">weakness-buff</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Hotter Charges</string>
+			<string name="description">Increase the fire-damage bonus to 10/20/30%.</string>
+			<array name="description-params">
+				<array><s>fire-damage</s><s>Fire damage</s><s>10%</s><s>20%</s><s>30%</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>0 24 24 24</vec4>
+			</array>
+			<string name="id">arbalest_napalm_expertise_hotter_charges</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<dict name="binds"><float name="fire-dmg">0.1</float></dict>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds"><float name="fire-dmg">0.2</float></dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds"><float name="fire-dmg">0.3</float></dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Volatile Ignition</string>
+			<string name="description">Fire hits can trigger a small fire explosion for 20/30/40 damage.</string>
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>20</s><s>30</s><s>40</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>0 24 24 24</vec4>
+			</array>
+			<string name="id">arbalest_napalm_expertise_volatile_ignition</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<dict name="binds"><int name="fire-ignition-dmg">20</int></dict>
+				<array name="modifiers">
+					<array><null /></array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<string name="trigger">hit</string>
+							<array name="skill-tags"><s>fire</s></array>
+							<bool name="target-self">false</bool>
+							<float name="chance">0.1</float>
+							<int name="timeout">500</int>
+							<array name="effects">
+								<dict>
+									<string name="class">Explode</string>
+									<int name="radius">32</int>
+									<int name="min-radius">8</int>
+									<float name="dist-scaling">1000</float>
+									<array name="effects">
+										<dict><string name="class">Damage</string><string name="fire-bind">fire-ignition-dmg</string></dict>
+									</array>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<string name="trigger">spellhit</string>
+							<array name="skill-tags"><s>fire</s></array>
+							<bool name="target-self">false</bool>
+							<float name="chance">0.1</float>
+							<int name="timeout">500</int>
+							<array name="effects">
+								<dict>
+									<string name="class">Explode</string>
+									<int name="radius">32</int>
+									<int name="min-radius">8</int>
+									<float name="dist-scaling">1000</float>
+									<array name="effects">
+										<dict><string name="class">Damage</string><string name="fire-bind">fire-ignition-dmg</string></dict>
+									</array>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds"><int name="fire-ignition-dmg">30</int></dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds"><int name="fire-ignition-dmg">40</int></dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Pyroclastic Recovery</string>
+			<string name="description">Fire spell critical hits restore 1% of your maximum health.</string>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>0 24 24 24</vec4>
+			</array>
+			<string name="id">arbalest_napalm_expertise_pyroclastic_recovery</string>
+			<string name="quality">rare</string>
+			<dict name="skill">
+				<array name="modifiers">
+					<array><null /></array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<string name="skill-type">spell</string>
+							<array name="skill-tags"><s>fire</s></array>
+							<string name="trigger">crit</string>
+							<bool name="target-self">true</bool>
+							<float name="chance">1</float>
+							<int name="timeout">0</int>
+							<array name="effects">
+								<dict>
+									<string name="class">HPBasedHeal</string>
+									<float name="heal">0.01</float>
+									<bool name="curr-hp">false</bool>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>

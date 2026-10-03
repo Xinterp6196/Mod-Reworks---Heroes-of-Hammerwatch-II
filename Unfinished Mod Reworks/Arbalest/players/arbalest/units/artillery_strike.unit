@@ -1,0 +1,31 @@
+<unit layer="-1">
+	<behavior class="BombBehavior">
+		<int name="delay">530</int>
+		<array name="actions">
+			<dict>
+				<string name="class">Explode</string>
+				<int name="min-radius">25</int>
+				<int name="radius">75</int>
+				<float name="dist-scaling">1000</float>
+				<array name="effects">
+					<dict>
+						<string name="class">Damage</string>
+						<string name="fire-bind">artillery-dmg</string>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<string name="class">SpawnEffect</string>
+				<string name="effect">effects/generic/explosions/bomb_explosion_1.effect?radius=75</string>
+			</dict>
+			<dict>
+				<string name="class">PlaySound</string>
+				<string name="sound">event:/sfx/player/attacks/twohanded/crossbow_explosive_shot_explode</string>
+			</dict>
+		</array>
+	</behavior>
+	<scenes default="default">
+		<scene name="default">
+		</scene>
+	</scenes>
+</unit>

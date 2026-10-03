@@ -1,0 +1,29 @@
+<loader>ActorBuffStackDef::LoadMultiple</loader>
+<array>
+	<dict>
+		<string name="id">artillery</string>
+		<string name="name">Artillery Barrage</string>
+		<string name="description">Active Artillery bombardment</string>
+		<int name="max">24</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="hide-hud-text">true</bool>
+		<dict name="timer">
+			<int name="time">500</int>
+			<int name="add-stack">-1</int>
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+			<bool name="gain-reset">true</bool>
+			<bool name="add-reset">false</bool>
+			<bool name="sub-reset">false</bool>
+		</dict>
+		<dict name="buff">
+			<array name="tags"><string>arbalest_artillery</string></array>
+			<bool name="debuff">false</bool>
+			<string name="fx">players/paladin/effects/judgement_active.effect</string>
+			<array name="modifiers">
+				<dict><string name="class">Modifiers::DummyModifier</string></dict>
+			</array>
+		</dict>
+	</dict>
+</array>

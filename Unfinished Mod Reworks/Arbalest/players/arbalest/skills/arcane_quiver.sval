@@ -1,0 +1,206 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Arcane Quiver</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">Every fourth weapon skill cast launches a homing Magic Missile at a nearby enemy. This scales with your Weapon Damage and not Spellpower.</string>
+	<array name="description-params">
+		<array><s>attacks</s><s>Weapon casts per trigger</s><s>4</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/arbalest/icons_skills.png</string>
+		<int>100</int><vec4>24 0 24 24</vec4>
+	</array>
+
+	<string name="id">arbalest_arcane_quiver</string>
+	<array name="tags"><s>passive</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+		<dict name="binds">
+			<int name="arcane-quiver-missile-quantity">4</int>
+			<int name="arcane-quiver-missile-jumps">0</int>
+			<float name="arcane-quiver-missile-stun-chance">0</float>
+			<float name="arcane-quiver-extra-missile-chance-one">0</float>
+			<float name="arcane-quiver-extra-missile-chance-two">0</float>
+			<float name="arcane-quiver-extra-missile-chance-three">0</float>
+		</dict>
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::QuantityTriggerEffect</string>
+					<array name="skill-tags"><s>weapon</s></array>
+					<float name="chance">1</float>
+					<bool name="target-self">true</bool>
+					<int name="timeout">0</int>
+					<string name="quantity-bind">arcane-quiver-missile-quantity</string>
+					<string name="trigger">attack-cast</string>
+					<bool name="triggered-quantity-reset">true</bool>
+					<array name="effects">
+						<dict>
+							<string name="class">ShootRandomEnemy</string>
+							<int name="range">120</int>
+							<bool name="ignore-target">false</bool>
+							<string name="projectile">players/arbalest/units/arcane_quiver_missile.unit</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::QuantityTriggerEffect</string>
+					<array name="skill-tags"><s>weapon</s></array>
+					<string name="chance-bind">arcane-quiver-extra-missile-chance-one</string>
+					<bool name="target-self">true</bool>
+					<int name="timeout">0</int>
+					<string name="quantity-bind">arcane-quiver-missile-quantity</string>
+					<string name="trigger">attack-cast</string>
+					<bool name="triggered-quantity-reset">true</bool>
+					<array name="effects">
+						<dict>
+							<string name="class">ShootRandomEnemy</string>
+							<int name="range">120</int>
+							<bool name="ignore-target">false</bool>
+							<string name="projectile">players/arbalest/units/arcane_quiver_missile.unit</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::QuantityTriggerEffect</string>
+					<array name="skill-tags"><s>weapon</s></array>
+					<string name="chance-bind">arcane-quiver-extra-missile-chance-two</string>
+					<bool name="target-self">true</bool>
+					<int name="timeout">0</int>
+					<string name="quantity-bind">arcane-quiver-missile-quantity</string>
+					<string name="trigger">attack-cast</string>
+					<bool name="triggered-quantity-reset">true</bool>
+					<array name="effects">
+						<dict>
+							<string name="class">ShootRandomEnemy</string>
+							<int name="range">120</int>
+							<bool name="ignore-target">false</bool>
+							<string name="projectile">players/arbalest/units/arcane_quiver_missile.unit</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::QuantityTriggerEffect</string>
+					<array name="skill-tags"><s>weapon</s></array>
+					<string name="chance-bind">arcane-quiver-extra-missile-chance-three</string>
+					<bool name="target-self">true</bool>
+					<int name="timeout">0</int>
+					<string name="quantity-bind">arcane-quiver-missile-quantity</string>
+					<string name="trigger">attack-cast</string>
+					<bool name="triggered-quantity-reset">true</bool>
+					<array name="effects">
+						<dict>
+							<string name="class">ShootRandomEnemy</string>
+							<int name="range">120</int>
+							<bool name="ignore-target">false</bool>
+							<string name="projectile">players/arbalest/units/arcane_quiver_missile.unit</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Expanded Volley</string>
+			<string name="description">Fire 1/2/3 additional Magic Missiles with each volley.</string>
+			<array name="description-params">
+				<array><s>projectiles</s><s>Additional missiles</s><s>1</s><s>2</s><s>3</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>24 0 24 24</vec4>
+			</array>
+			<string name="id">arbalest_arcane_quiver_projectiles</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<dict name="binds">
+					<float name="arcane-quiver-extra-missile-chance-one">1</float>
+					<float name="arcane-quiver-extra-missile-chance-two">0</float>
+				</dict>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="arcane-quiver-extra-missile-chance-two">1</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="arcane-quiver-extra-missile-chance-three">1</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Ricochet</string>
+			<string name="description">Magic Missiles can jump to 1/2/3 additional enemies.</string>
+			<array name="description-params">
+				<array><s>jumps</s><s>Additional jumps</s><s>1</s><s>2</s><s>3</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>24 0 24 24</vec4>
+			</array>
+			<string name="id">arbalest_arcane_quiver_jumps</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<dict name="binds">
+					<int name="arcane-quiver-missile-jumps">1</int>
+				</dict>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<int name="arcane-quiver-missile-jumps">2</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<int name="arcane-quiver-missile-jumps">3</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Stunning Missiles</string>
+			<string name="description">Magic Missiles have a 5/10/15% chance to stun on hit.</string>
+			<array name="description-params">
+				<array><s>chance</s><s>Stun chance</s><s>5%</s><s>10%</s><s>15%</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>24 0 24 24</vec4>
+			</array>
+			<string name="id">arbalest_arcane_quiver_stun</string>
+			<dict name="skill">
+				<dict name="binds">
+					<float name="arcane-quiver-missile-stun-chance">0.05</float>
+				</dict>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="arcane-quiver-missile-stun-chance">0.1</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="arcane-quiver-missile-stun-chance">0.15</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

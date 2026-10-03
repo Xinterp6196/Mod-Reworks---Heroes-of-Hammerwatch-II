@@ -1,0 +1,25 @@
+<effect looping="false" layer="-1">
+	<param name="height" default="40"/>
+
+	<sprite origin="128 128" texture="./Mortar256.png" material="system/default.mats:default"
+		scale-x="0.55"
+		scale-y="0.55"
+		pos-y="-height+height*pow(t,4)-30"
+		color-a="sin(t*pi)">
+		<frame time="550">0 0 256 256</frame>
+	</sprite>
+
+	<light pos-y="-height+height*pow(t,4)-30">
+		<sprite texture="./MortarMask256.png">
+			<frame>0 0 256 256</frame>
+		</sprite>
+		<looping value="false"/>
+		<length value="550"/>
+		<cast-shadows value="false"/>
+		<size value="128"/>
+		<color-r value="1*sin(t*pi)"/>
+		<color-g value="0.55*sin(t*pi)"/>
+		<color-b value="0.15*sin(t*pi)"/>
+		<color-a value="0.35*sin(t*pi)"/>
+	</light>
+</effect>

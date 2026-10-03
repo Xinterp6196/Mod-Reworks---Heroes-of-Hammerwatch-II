@@ -1,0 +1,284 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Artillery</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">Call down a rapid barrage of mortar strikes on nearby enemies.</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>Fire damage per strike</s><s>30</s><s>40</s><s>50</s><s>60</s><s>75</s></array>
+		<array><s>range</s><s>Strike range</s><s>300</s></array>
+		<array><s>strikes</s><s>Strikes</s><s>12</s></array>
+		<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>6s</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>45</s><s>45</s><s>55</s><s>55</s><s>65</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>15s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/arbalest/icons_skills.png</string>
+		<int>100</int><vec4>48 0 24 24</vec4>
+	</array>
+
+	<string name="id">arbalest_artillery</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>fire</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">cast-long</string>
+		<int name="anim-length">1000</int>
+		<int name="cooldown">15000</int>
+		<int name="castpoint">500</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0.2</float>
+		<ivec2 name="move-speed">0 500</ivec2>
+		<ivec2 name="blocking">0 500</ivec2>
+		<bool name="repeating">false</bool>
+		<int name="mana-cost">45</int>
+
+		<dict name="binds">
+			<string name="artillery-stack">players/arbalest/stacks_arbalest.sval:artillery</string>
+			<int name="artillery-stacks">12</int>
+			<string name="artillery-unit">players/arbalest/units/artillery_strike.unit</string>
+			<int name="artillery-dmg">30</int>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ModifySummons</string>
+					<string name="unit">players/arbalest/units/artillery_strike.unit</string>
+					<int name="add-max-num">100</int>
+				</dict>
+				<dict>
+					<bool name="cond-target-self">true</bool>
+					<array name="conditional">
+						<s>buff</s><s>has tag</s><s>arbalest_artillery</s>
+					</array>
+					<string name="class">Modifiers::TimedTriggerEffect</string>
+					<float name="chance">1</float>
+					<int name="timeout">0</int>
+					<float name="intensity">1</float>
+					<int name="freq">500</int>
+					<array name="effects">
+						<dict>
+							<string name="class">HitscanRandomEnemy</string>
+							<int name="range">300</int>
+							<int name="penetrating">0</int>
+							<bool name="ignore-target">false</bool>
+							<array name="effects">
+								<dict>
+									<string name="class">SpawnEffect</string>
+									<string name="effect">players/arbalest/effects/artillery_mortar_drop.effect</string>
+								</dict>
+								<dict>
+									<string name="class">SpawnUnit</string>
+									<string name="unit-bind">artillery-unit</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+
+		<dict name="actions">
+			<array name="pre">
+				<dict>
+					<string name="class">SpawnEffect</string>
+					<string name="effect">players/paladin/effects/judgement_cast.effect</string>
+					<bool name="attach-to-owner">true</bool>
+				</dict>
+			</array>
+			<array name="cast">
+				<dict><bool name="target-self">true</bool></dict>
+				<dict>
+					<string name="class">AddStacks</string>
+					<string name="buff-bind">artillery-stack</string>
+					<string name="stacks-bind">artillery-stacks</string>
+					<bool name="target-self">true</bool>
+				</dict>
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/rogue/grenade/grenade_throw</string>
+				</dict>
+			</array>
+		</dict>
+
+		<array name="timeline">
+			<i>0</i><s>pre</s>
+			<i>500</i><s>cast</s>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><int name="mana-cost">45</int><dict name="binds"><int name="artillery-dmg">40</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><int name="mana-cost">55</int><dict name="binds"><int name="artillery-dmg">50</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_4</int><int name="mana-cost">55</int><dict name="binds"><int name="artillery-dmg">60</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><int name="mana-cost">65</int><dict name="binds"><int name="artillery-dmg">75</int></dict></dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Sustained Barrage</string>
+			<string name="description">Fire 2/4/6 additional mortar strikes per barrage.</string>
+			<array name="description-params">
+				<array><s>strikes</s><s>Additional strikes</s><s>2</s><s>4</s><s>6</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>48 0 24 24</vec4>
+			</array>
+			<string name="id">arbalest_artillery_sustained_barrage</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<dict name="binds"><int name="artillery-stacks">14</int></dict>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds"><int name="artillery-stacks">16</int></dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds"><int name="artillery-stacks">18</int></dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Execution Order</string>
+			<string name="description">Kills during Artillery have a 10/20/30% chance to add one strike to the barrage.</string>
+			<array name="description-params">
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>10%</s><s>20%</s><s>30%</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>48 0 24 24</vec4>
+			</array>
+			<string name="id">arbalest_artillery_execution_order</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<array name="modifiers">
+					<array><null /></array>
+					<array><null /></array>
+					<array>
+						<dict>
+							<bool name="cond-target-self">true</bool>
+							<array name="conditional">
+								<s>buff</s><s>has tag</s><s>arbalest_artillery</s>
+							</array>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<string name="skill-id">arbalest_artillery</string>
+							<string name="trigger">kill</string>
+							<bool name="target-self">true</bool>
+							<string name="chance-bind">execution-chance</string>
+							<int name="timeout">0</int>
+							<array name="effects">
+								<dict>
+									<string name="class">AddStacks</string>
+									<string name="buff-bind">artillery-stack</string>
+									<int name="stacks">1</int>
+									<bool name="target-self">true</bool>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+				<dict name="binds"><float name="execution-chance">0.1</float></dict>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds"><float name="execution-chance">0.2</float></dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds"><float name="execution-chance">0.3</float></dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<string name="name">Incendiary Shells</string>
+			<string name="description">Artillery strikes leave a brief damaging fire zone.</string>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>48 0 24 24</vec4>
+			</array>
+			<string name="id">arbalest_artillery_incendiary_shells</string>
+			<string name="quality">rare</string>
+			<dict name="skill">
+				<array name="modifiers">
+					<array><null /></array>
+					<array><null /></array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<string name="skill-id">arbalest_artillery</string>
+							<string name="trigger">spellhit</string>
+							<bool name="target-self">false</bool>
+							<float name="chance">1</float>
+							<int name="timeout">0</int>
+							<array name="effects">
+								<dict>
+									<string name="class">SpawnUnit</string>
+									<string name="unit">players/arbalest/units/artillery_fire_area.unit</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<string name="name">Encased Thermite</string>
+			<string name="description">Artillery impacts ignite enemies, dealing 15/20/25% of the strike damage as fire damage over 4 seconds.</string>
+			<array name="description-params">
+				<array><s>damage</s><s>Fire damage</s><s>15%</s><s>20%</s><s>25%</s></array>
+				<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>4s</s></array>
+				<array><s>tick-rate</s><b>t</b><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>48 0 24 24</vec4>
+			</array>
+			<string name="id">arbalest_artillery_encased_thermite</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<dict name="binds"><float name="thermite-dmg-mul">0.15</float></dict>
+				<array name="modifiers">
+					<array><null /></array>
+					<array><null /></array>
+					<array><null /></array>
+					<array><null /></array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<string name="skill-id">arbalest_artillery</string>
+							<string name="trigger">spellhit</string>
+							<bool name="target-self">false</bool>
+							<float name="chance">1</float>
+							<int name="timeout">0</int>
+							<array name="effects">
+								<dict>
+									<string name="class">SpawnUnit</string>
+									<string name="unit">players/arbalest/units/artillery_thermite_area.unit</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds"><float name="thermite-dmg-mul">0.2</float></dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds"><float name="thermite-dmg-mul">0.25</float></dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

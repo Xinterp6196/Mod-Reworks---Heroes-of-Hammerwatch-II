@@ -1,0 +1,219 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Toxic Chaff</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">.skills.rogue.mastery_2.spell_1.desc</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>25</s><s>30</s><s>35</s><s>40</s><s>45</s></array>
+		<array><s>tick-rate</s><b>t</b><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+		<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>6s</s><s>7s</s><s>8s</s><s>9s</s><s>10s</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>50</s><s>50</s><s>60</s><s>60</s><s>70</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>18s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/arbalest/icons_skills.png</string>
+		<int>100</int><vec4>24 24 24 24</vec4>
+	</array>
+
+	<string name="id">arbalest_toxic_chaff</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>poison</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::ShootProjectileTarget</string>
+		<string name="anim">cast</string>
+		<int name="anim-length">400</int>
+		<string name="start-snd"></string>
+		<string name="snd">event:/sfx/player/classes/rogue/toxic_cloud/toxic_cloud</string>
+
+		<int name="cooldown">18000</int>
+		<int name="castpoint">100</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0.5</float>
+		<ivec2 name="move-speed">0 150</ivec2>
+		<bool name="blocking">false</bool>
+
+		<int name="mana-cost">50</int>
+		<int name="radius">48</int>
+		<int name="range">360</int>
+		<int name="range-min">16</int>
+		<bool name="raycast-to-target">false</bool>
+		<int name="dist">8</int>
+
+		<dict name="binds">
+			<string name="proj-unit">players/arbalest/units/toxic_chaff_projectile.unit</string>
+			<string name="area-unit">players/arbalest/units/toxic_chaff.unit</string>
+			<int name="area-ttl">6000</int>
+			<int name="area-poison-dmg">25</int>
+			<string name="area-buff">null</string>
+			<string name="area-debuff">null</string>
+			<float name="area-blind-chance">0</float>
+			<string name="area-blind-buff">null</string>
+		</dict>
+		<string name="projectile-bind">proj-unit</string>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<int name="mana-cost">50</int>
+			<dict name="binds">
+				<int name="area-poison-dmg">30</int>
+				<int name="area-ttl">7000</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="area-poison-dmg">35</int>
+				<int name="area-ttl">8000</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="area-poison-dmg">40</int>
+				<int name="area-ttl">9000</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<int name="mana-cost">70</int>
+			<dict name="binds">
+				<int name="area-poison-dmg">45</int>
+				<int name="area-ttl">10000</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.rogue.mastery_2.spell_1.up1.name</string>
+			<string name="description">.skills.rogue.mastery_2.spell_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>evasion</s><s>.skills.desc.params.evasion</s><s>10%</s><s>20%</s><s>30%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>24 24 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_toxic_chaff_evasion</string>
+			<string name="quality">uncommon</string>
+			<!-- <array name="blocked-by-skills"><s>rog_smoke_cloud_poison</s></array> -->
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="area-buff">players/rogue/buffs_rogue.sval:toxic_cloud_evasion_1</string>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<string name="area-buff">players/rogue/buffs_rogue.sval:toxic_cloud_evasion_2</string>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<string name="area-buff">players/rogue/buffs_rogue.sval:toxic_cloud_evasion_3</string>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.rogue.mastery_2.spell_1.up2.name</string>
+			<string name="description">.skills.rogue.mastery_2.spell_1.up2.desc</string>
+			<array name="shown-icons"><s>armorbreak</s></array>
+
+			<array name="description-params">
+				<array><s>armorbreak</s><s>.skills.desc.params.status_effect</s><s>.status_effect.armor_break_minor</s><s>.status_effect.armor_break</s><s>.status_effect.armor_break_greater</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>24 24 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_toxic_chaff_corrosion</string>
+			<string name="quality">uncommon</string>
+			<!-- <array name="blocked-by-skills"><s>rog_smoke_cloud_poison</s></array> -->
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="area-debuff">tweak/buffs/status_effects.sval:armor_break_minor</string>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<string name="area-debuff">tweak/buffs/status_effects.sval:armor_break</string>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<string name="area-debuff">tweak/buffs/status_effects.sval:armor_break_greater</string>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+
+		<dict>
+			<string name="name">Lingering Contamination</string>
+			<string name="description">Toxic Chaff's cloud lasts 2 seconds longer.</string>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>24 24 24 24</vec4>
+			</array>
+			<string name="id">arbalest_toxic_chaff_lingering_contamination</string>
+			<string name="quality">rare</string>
+			<dict name="skill">
+				<dict name="binds"><int name="area-ttl">8000</int></dict>
+			</dict>
+		</dict>
+		<dict>
+			<string name="name">Irritant Particles</string>
+			<string name="description">Toxic Chaff has a 33/66/100% chance to blind enemies it affects.</string>
+			<array name="description-params">
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>33%</s><s>66%</s><s>100%</s></array>
+			</array>
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>24 24 24 24</vec4>
+			</array>
+			<string name="id">arbalest_toxic_chaff_irritant_particles</string>
+			<string name="quality">uncommon</string>
+			<dict name="skill">
+				<dict name="binds">
+					<float name="area-blind-chance">0.33</float>
+					<string name="area-blind-buff">tweak/buffs/status_effects.sval:blindness</string>
+				</dict>
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds"><float name="area-blind-chance">0.66</float></dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds"><float name="area-blind-chance">1</float></dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

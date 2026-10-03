@@ -1,0 +1,124 @@
+<unit netsync="none">
+	<behavior class="NewProjectile">
+		<string name="anim">default</string>
+		<float name="speed">3</float>
+		<int name="ttl">1500</int>
+		<string name="penetration-bind">arcane-quiver-missile-jumps</string>
+		<int name="bounces">3</int>
+		<bool name="bounce-on-collide">true</bool>
+		<bool name="hit-last-collision">true</bool>
+		<int name="damage-tick-last-collision">50</int>
+
+		<array name="modifiers">
+			<dict>
+				<string name="class">Projectile::Speed</string>
+				<float name="hit-speed-mul">0.5</float>
+				<float name="hit-intensity-mul">0.8</float>
+			</dict>
+			<dict>
+				<string name="class">Projectile::NestedModifier</string>
+				<ivec2 name="timespan">0 500</ivec2>
+				<array name="modifiers">
+					<dict>
+						<string name="class">Projectile::Speed</string>
+						<float name="speed-delta">-3</float>
+						<vec2 name="speed-limits">0.1 10</vec2>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<string name="class">Projectile::NestedModifier</string>
+				<ivec2 name="timespan">500 2000</ivec2>
+				<array name="modifiers">
+					<dict>
+						<string name="class">Projectile::Speed</string>
+						<float name="speed-delta">40</float>
+						<vec2 name="speed-limits">0.1 10</vec2>
+					</dict>
+					<dict>
+						<string name="class">Projectile::Seeking</string>
+						<float name="turn-speed">0.2</float>
+						<float name="turn-speed-delta">2</float>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<string name="class">Projectile::GroundBouncing</string>
+				<int name="period">500</int>
+				<int name="height">0</int>
+				<float name="speed-mul">1</float>
+				<float name="height-mul">1</float>
+				<float name="period-mul">1</float>
+				<int name="bounces">999</int>
+				<bool name="hit-target">false</bool>
+			</dict>
+			<dict>
+				<string name="class">Projectile::Retargeter</string>
+				<int name="target-range">160</int>
+				<float name="interception">0</float>
+				<bool name="destroy-on-fail">false</bool>
+				<bool name="destroy-on-failed-chance">false</bool>
+				<bool name="retarget-on-hit">false</bool>
+				<bool name="retarget-on-collide">false</bool>
+				<bool name="retarget-on-ground-bounce">true</bool>
+				<float name="chance">1</float>
+				<bool name="raycast">true</bool>
+			</dict>
+			<dict>
+				<string name="class">Projectile::Retargeter</string>
+				<int name="target-range">120</int>
+				<float name="interception">0</float>
+				<bool name="destroy-on-fail">true</bool>
+				<bool name="destroy-on-failed-chance">true</bool>
+				<bool name="retarget-on-ground-bounce">false</bool>
+				<bool name="retarget-on-hit">true</bool>
+				<float name="chance">1</float>
+				<bool name="raycast">true</bool>
+			</dict>
+			<dict>
+				<string name="class">Projectile::AttachedLoopingSound</string>
+				<string name="sound">event:/sfx/player/classes/wizard/magic_missiles/magic_missiles_swish</string>
+			</dict>
+		</array>
+
+		<array name="hit-effects">
+			<dict>
+				<string name="class">PlayerDamage</string>
+				<bool name="off-hand">false</bool>
+				<float name="mul">0.5</float>
+				<bool name="shield-blockable">true</bool>
+			</dict>
+			<dict>
+				<string name="class">SpawnEffect</string>
+				<string name="effect">effects/generic/impacts/arcane_impact_2.effect?cR=1&amp;cG=0.25&amp;cB=1.8</string>
+			</dict>
+			<dict>
+				<string name="class">ApplyBuff</string>
+				<string name="buff">tweak/buffs/status_effects.sval:stun</string>
+				<string name="chance-bind">arcane-quiver-missile-stun-chance</string>
+			</dict>
+			<dict>
+				<string name="class">PlaySound</string>
+				<string name="sound">event:/sfx/player/classes/wizard/magic_missiles/magic_missiles_hit</string>
+			</dict>
+		</array>
+		<array name="miss-effects">
+			<dict>
+				<string name="class">SpawnEffect</string>
+				<string name="effect">effects/generic/projectiles/arcane_projectile_ball_2_end.effect</string>
+				<bool name="send-angle">true</bool>
+			</dict>
+		</array>
+		<dict name="effect-params">
+		</dict>
+	</behavior>
+
+	<scenes>
+		<scene name="default">
+			<collision static="false">
+				<circle projectile="true" radius="4" />
+			</collision>
+			<effect src="effects/generic/projectiles/arcane_projectile_ball_2.effect" />
+		</scene>
+	</scenes>
+</unit>

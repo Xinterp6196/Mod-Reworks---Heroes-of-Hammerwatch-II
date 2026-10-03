@@ -1,0 +1,277 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">Sustained Salvo</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">Build critical chance and damage by landing weapon critical hits.</string>
+
+	<array name="description-params">
+		<array><s>crit-chance</s><s>.skills.desc.params.crit.chance.weapon</s><s>5%</s></array>
+		<array><s>stacks-crit-chance</s><s>.skills.desc.params.stacks.crit.weapon</s><s>2.5%</s></array>
+		<array><s>stacks-crit-damage</s><s>.skills.desc.params.stacks.crit_damage.weapon</s><s>+10%</s><s>+15%</s><s>+20%</s><s>+25%</s><s>+30%</s></array>
+		<array><s>stacks-max</s><s>.skills.desc.params.stacks.max</s><s>4</s></array>
+		<array><s>stacks-duration</s><b>t</b><s>.skills.desc.params.stacks.duration</s><s>5s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/arbalest/icons_skills.png</string>
+		<int>100</int><vec4>72 0 24 24</vec4>
+	</array>
+
+	<string name="id">arbalest_sustained_salvo</string>
+	<array name="tags"><s>passive</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+
+		<dict name="binds">
+			<vec2 name="rhythm-crit-chance">0.025 0.1</vec2>
+			<vec2 name="rhythm-crit-dmg">0.1 0.4</vec2>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::SkillCrit</string>
+					<array name="skill-tags"><s>weapon</s></array>
+					<float name="chance">0.05</float>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::InjectModifiersIntoStack</string>
+					<string name="buff">players/ranger/stacks_ranger.sval:rhythm</string>
+					<array name="modifiers">
+						<dict>
+							<string name="class">Modifiers::CritDamage</string>
+							<string name="attack-crit-dmg-bind">rhythm-crit-dmg</string>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::CriticalHit</string>
+							<string name="chance-bind">rhythm-crit-chance</string>
+						</dict>
+					</array>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<array name="skill-tags"><s>weapon</s></array>
+					<string name="trigger">crit</string>
+					<bool name="target-self">true</bool>
+					<float name="chance">1</float>
+					<int name="timeout">0</int>
+
+					<array name="effects">
+<!-- 						<dict>
+							<string name="class">DebugLog</string>
+							<string name="text">test_rhythm</string>
+						</dict> -->
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/ranger/stacks_ranger.sval:rhythm</string>
+							<int name="stacks">1</int>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
+			<dict name="binds">
+				<vec2 name="rhythm-crit-dmg">0.15 0.6</vec2>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
+			<dict name="binds">
+				<vec2 name="rhythm-crit-dmg">0.2 0.8</vec2>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
+			<dict name="binds">
+				<vec2 name="rhythm-crit-dmg">0.25 1.0</vec2>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
+			<dict name="binds">
+				<vec2 name="rhythm-crit-dmg">0.3 1.2</vec2>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">In the Flow</string>
+			<string name="description">Sustained Salvo stacks grant 5/10% attack speed.</string>
+
+			<array name="description-params">
+				<array><s>weapon-speed</s><s>.skills.desc.params.stacks.weapon_speed</s><s>+5%</s><s>+10%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>72 0 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_sustained_salvo_attack_speed</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<vec2 name="rhythm-attack-speed">0.05 0.2</vec2>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+		 			<array>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/ranger/stacks_ranger.sval:rhythm</string>
+
+							<array name="modifiers">
+								<dict>
+									<string name="class">Modifiers::SpeedAdd</string>
+									<string name="attack-speed-bind">rhythm-attack-speed</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<vec2 name="rhythm-attack-speed">0.1 0.4</vec2>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">Efficiency</string>
+			<string name="description">Sustained Salvo stacks reduce weapon and spell mana costs by 2.5/5/10%.</string>
+
+			<array name="description-params">
+				<array><s>mana-cost</s><s>.skills.desc.params.stacks.mana_cost</s><s>-2.5%</s><s>-5%</s><s>-10%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>72 0 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_sustained_salvo_mana_cost</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<vec2 name="flow-cost">0.975 0.9</vec2>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+		 			<array>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/ranger/stacks_ranger.sval:rhythm</string>
+
+							<array name="modifiers">
+								<dict>
+									<string name="class">Modifiers::SkillCost</string>
+									<array name="skill-tags"><s>weapon</s></array>
+									<string name="mana-mul-bind">flow-cost</string>
+								</dict>
+								<dict>
+									<string name="class">Modifiers::SkillCost</string>
+									<string name="skill-type">spell</string>
+									<string name="mana-mul-bind">flow-cost</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<vec2 name="flow-cost">0.95 0.8</vec2>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<vec2 name="flow-cost">0.9 0.6</vec2>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<!-- Add dash recovery rate? -->
+		<dict>
+			<string name="name">Momentum</string>
+			<string name="description">Dashing grants a Sustained Salvo stack.</string>
+
+			<array name="icon">
+				<string>players/arbalest/icons_skills.png</string>
+				<int>100</int><vec4>72 0 24 24</vec4>
+			</array>
+
+			<string name="id">arbalest_sustained_salvo_dash</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+		 			<array>
+						<dict>
+							<string name="class">Modifiers::TriggerEffect</string>
+							<string name="trigger">dash</string>
+							<bool name="target-self">true</bool>
+							<float name="chance">1</float>
+							<int name="timeout">0</int>
+
+							<array name="effects">
+<!-- 								<dict>
+									<string name="class">DebugLog</string>
+									<string name="text">test</string>
+								</dict> -->
+								<dict>
+									<string name="class">AddStacks</string>
+									<bool name="target-self">true</bool>
+									<string name="buff">players/ranger/stacks_ranger.sval:rhythm</string>
+									<int name="stacks">1</int>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+		</dict>
+
+		<!-- armor pen? -->
+		<!-- ranged aim spread-->
+	</array>
+</dict>
