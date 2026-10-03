@@ -2,9 +2,10 @@
 <dict>
 	<string name="name">Arcane Quiver</string>
 	<string name="type-name">.skills.type.passive</string>
-	<string name="description">Every fourth weapon skill cast launches a homing Magic Missile at a nearby enemy. This scales with your Weapon Damage and not Spellpower.</string>
+	<string name="description">Your quiver fires a Magic Missle after use. This scales to your Weapon Damage, not with Spellpower.</string>
 	<array name="description-params">
 		<array><s>attacks</s><s>Weapon casts per trigger</s><s>4</s></array>
+		<array><s>damage</s><s>Weapon damage</s><s>30%</s><s>40%</s><s>50%</s><s>60%</s><s>70%</s></array>
 	</array>
 
 	<array name="icon">
@@ -23,6 +24,7 @@
 			<int name="arcane-quiver-missile-quantity">4</int>
 			<int name="arcane-quiver-missile-jumps">0</int>
 			<float name="arcane-quiver-missile-stun-chance">0</float>
+			<float name="arcane-quiver-damage-mul">0.3</float>
 			<float name="arcane-quiver-extra-missile-chance-one">0</float>
 			<float name="arcane-quiver-extra-missile-chance-two">0</float>
 			<float name="arcane-quiver-extra-missile-chance-three">0</float>
@@ -104,6 +106,33 @@
 			</array>
 		</array>
 	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
+			<dict name="binds">
+				<float name="arcane-quiver-damage-mul">0.4</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
+			<dict name="binds">
+				<float name="arcane-quiver-damage-mul">0.5</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
+			<dict name="binds">
+				<float name="arcane-quiver-damage-mul">0.6</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
+			<dict name="binds">
+				<float name="arcane-quiver-damage-mul">0.7</float>
+			</dict>
+		</dict>
+	</array>
 
 	<array name="modifier-skills">
 		<dict>

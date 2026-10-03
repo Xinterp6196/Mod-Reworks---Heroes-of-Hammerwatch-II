@@ -7,8 +7,8 @@
 	<array name="description-params">
 		<array><s>damage</s><s>Fire damage per strike</s><s>30</s><s>40</s><s>50</s><s>60</s><s>75</s></array>
 		<array><s>range</s><s>Strike range</s><s>300</s></array>
-		<array><s>strikes</s><s>Strikes</s><s>12</s></array>
-		<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>6s</s></array>
+		<array><s>strikes</s><s>Strikes</s><s>12</s><s>14</s><s>16</s><s>18</s><s>20</s></array>
+		<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>6s</s><s>7s</s><s>8s</s><s>9s</s><s>10s</s></array>
 		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>45</s><s>45</s><s>55</s><s>55</s><s>65</s></array>
 		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>15s</s></array>
 	</array>
@@ -113,10 +113,10 @@
 	</dict>
 
 	<array name="upgrades">
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><int name="mana-cost">45</int><dict name="binds"><int name="artillery-dmg">40</int></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><int name="mana-cost">55</int><dict name="binds"><int name="artillery-dmg">50</int></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_4</int><int name="mana-cost">55</int><dict name="binds"><int name="artillery-dmg">60</int></dict></dict>
-		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><int name="mana-cost">65</int><dict name="binds"><int name="artillery-dmg">75</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_2</int><int name="mana-cost">45</int><dict name="binds"><int name="artillery-dmg">40</int><int name="artillery-stacks">14</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_3</int><int name="mana-cost">55</int><dict name="binds"><int name="artillery-dmg">50</int><int name="artillery-stacks">16</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_4</int><int name="mana-cost">55</int><dict name="binds"><int name="artillery-dmg">60</int><int name="artillery-stacks">18</int></dict></dict>
+		<dict><int name="skill-cost">SKILLCOSTLEVEL_5</int><int name="mana-cost">65</int><dict name="binds"><int name="artillery-dmg">75</int><int name="artillery-stacks">20</int></dict></dict>
 	</array>
 
 	<array name="modifier-skills">

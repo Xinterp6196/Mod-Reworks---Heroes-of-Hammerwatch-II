@@ -36,3 +36,5 @@ Notable changes to the Arbalest mod are recorded here. Entries remain under
 - Rebuilt Arcane Quiver on the Scroll of Magic Missile pattern: every fourth weapon skill cast launches a homing missile at a nearby enemy, while damage remains weapon-scaled and activation remains attack-based.
 - Replaced Arcane Quiver's rocket upgrades with Magic Missile-style upgrades for extra missiles, jumps, and stun chance, and adopted the game's native Magic Missile visuals and impact effects.
 - Increased Arcane Quiver's Expanded Volley and Ricochet upgrades to three ranks and set Stunning Missiles to 5/10/15% stun chance.
+- Added all five Arcane Quiver skill ranks, scaling missile damage from 30% to 70% of Weapon Damage.
+- Increased Artillery's rank progression to 12/14/16/18/20 strikes over 6/7/8/9/10 seconds.
